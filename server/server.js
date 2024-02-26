@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
-const MONGOURI = "mongodb://db:27017/csgo_trading_app";
+const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
 
 app.use(cors());
 app.use(express.json());
@@ -34,3 +34,6 @@ mongoose.connect(MONGOURI)
     .catch((error) => {
         console.log(error);
     });
+
+
+    
