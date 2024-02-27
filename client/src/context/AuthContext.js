@@ -2,7 +2,7 @@
 import { createContext } from 'react';
 import axios from 'axios';
 
-import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 const AuthContext = createContext();
 

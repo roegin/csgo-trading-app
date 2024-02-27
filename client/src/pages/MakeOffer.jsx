@@ -4,7 +4,7 @@ import MakeOfferForm from '../components/makeoffer/MakeOfferForm';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 export default function MakeOffer() {
     const {_id} = useParams();

@@ -4,7 +4,7 @@ import AuthContext from "../../context/AuthContext";
 import jwtDecode from 'jwt-decode';
 import '../../styles/components/LoginForm.css'
 
-import { SERVER_URL } from '../../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 export default function LoginForm() {
     const authContext = useContext(AuthContext);

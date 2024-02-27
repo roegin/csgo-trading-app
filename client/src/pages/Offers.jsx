@@ -3,7 +3,7 @@ import {IncomingOffers, OutgoingOffers} from "../components/offers/Offer";
 import {getUserId, currentTime} from "../utilities/Utilities";
 import '../styles/pages/Offers.css';
 
-import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 export default function Offers() {
     const [offerData, setOfferData] = useState({

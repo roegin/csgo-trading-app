@@ -5,7 +5,7 @@ import {getUserId} from "../../utilities/Utilities";
 import {toast} from 'react-toastify';
 import '../../styles/components/Creation.css'
 
-import { SERVER_URL } from '../../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 function itemsReducer(items, action) {
     switch (action.type) {

@@ -4,7 +4,7 @@ import Trades from "../components/index/Trades";
 import Activity from "../components/index/Activity";
 import '../styles/pages/Index.css';
 
-import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 export default function Index() {
     const [data, setData] = useState([]);
