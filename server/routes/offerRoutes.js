@@ -17,6 +17,7 @@ async function offerEventsHandler(request, response, next) {
     'Cache-Control': 'no-cache',
     'Access-Control-Allow-Origin': '*',
     };
+
     try {
         const offerData = await Offer.find({}).lean().exec();
 
