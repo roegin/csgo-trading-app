@@ -10,12 +10,6 @@ const app = express();
 // const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
 const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
 // 具体添加此处
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://alex.shinestu.com:3000');
-  res.header('Access-Control-Allow-Methods', 'GET, POST');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
 
 
 
@@ -24,9 +18,9 @@ app.use((req, res, next) => {
 
 
 app.use(cors({
-  origin: 'http://alex.shinestu.com:3000', // or '*' to allow all origins
-  methods: ['GET', 'POST'], // allowed HTTP methods
-  credentials: true // allow cookies to be sent with requests
+    origin: 'http://alex.shinestu.com',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
