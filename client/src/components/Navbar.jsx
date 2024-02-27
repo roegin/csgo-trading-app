@@ -16,7 +16,7 @@ export default function Navbar() {
     return (
         <header className="navbar">
             <div className="navbar-logo">
-                <h1>CSMEX</h1>
+                <h1>BUFF</h1>
             </div>
             <nav className="navbar-menu">
                 <ul>
