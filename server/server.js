@@ -47,4 +47,5 @@ mongoose.connect(MONGOURI)
     });
 
 
+console.log('服务器启动 1.1')
     
