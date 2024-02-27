@@ -18,9 +18,9 @@ const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/
 
 
 app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST'],
-  allowedHeaders: true
+ origin: '*',
+ methods: ['GET', 'POST'],
+ allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization']
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
