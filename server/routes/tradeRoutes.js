@@ -13,9 +13,10 @@ router.get('/all', eventsHandler);
 
 async function eventsHandler(request, response, next) {
     const headers = {
-        'Content-Type': 'text/event-stream',
-        'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache'
+    'Content-Type': 'text/event-stream',
+    'Connection': 'keep-alive',
+    'Cache-Control': 'no-cache',
+    'Access-Control-Allow-Origin': 'http://alex.shinestu.com:3000',
     };
 
     try {
