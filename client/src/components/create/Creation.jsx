@@ -5,6 +5,8 @@ import {getUserId} from "../../utilities/Utilities";
 import {toast} from 'react-toastify';
 import '../../styles/components/Creation.css'
 
+import { SERVER_URL } from '../../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 function itemsReducer(items, action) {
     switch (action.type) {
         case 'added': {
@@ -38,7 +40,7 @@ export default function Creation() {
         const haveItemsFormatted = haveItems.map(({id, ...rest}) => rest);
         const wantItemsFormatted = wantItems.map(({id, ...rest}) => rest);
 
-        fetch('http://localhost:4000/trades/new', {
+        fetch(SERVER_URL+'/trades/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

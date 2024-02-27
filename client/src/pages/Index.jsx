@@ -4,6 +4,8 @@ import Trades from "../components/index/Trades";
 import Activity from "../components/index/Activity";
 import '../styles/pages/Index.css';
 
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 export default function Index() {
     const [data, setData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
@@ -16,7 +18,7 @@ export default function Index() {
         let events = null;
 
         if (!hasRendered.current) {
-            events = new EventSource('http://localhost:4000/trades/all');
+            events = new EventSource('trades/all');
 
             events.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
@@ -39,7 +41,7 @@ export default function Index() {
         let offerEvents = null;
 
         if (!hasRenderedOffers.current) {
-            offerEvents = new EventSource('http://localhost:4000/offers/all');
+            offerEvents = new EventSource(SERVER_URL+'/offers/all');
 
             offerEvents.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
@@ -96,3 +98,8 @@ export default function Index() {
         </div>
     );
 }
+
+
+
+
+

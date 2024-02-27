@@ -4,6 +4,8 @@ import AuthContext from "../../context/AuthContext";
 import jwtDecode from 'jwt-decode';
 import '../../styles/components/LoginForm.css'
 
+import { SERVER_URL } from '../../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 export default function LoginForm() {
     const authContext = useContext(AuthContext);
 
@@ -29,7 +31,7 @@ export default function LoginForm() {
             password
         }
 
-        const res = await fetch("http://localhost:4000/users/login", {
+        const res = await fetch(SERVER_URL+"/users/login", {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json'
@@ -57,7 +59,7 @@ export default function LoginForm() {
         const decoded = jwtDecode(token);
         const userId = decoded.user.id;
 
-        const userResponse = await fetch(`http://localhost:4000/users/${userId}`, {
+        const userResponse = await fetch(`${SERVER_URL}/users/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

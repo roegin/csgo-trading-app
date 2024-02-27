@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import AuthContext from "./AuthContext";
 import axios from 'axios';
 
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 const AuthProvider = ({children}) => {
  const [isAuthenticated, setIsAuthenticated] = useState(
  sessionStorage.getItem('isAuthenticated') === 'true'
@@ -18,7 +20,7 @@ const AuthProvider = ({children}) => {
 
   const registerUser = async (username, password) => {
     try {
-      const res = await axios.post('http://localhost:4000/users/register', { username, password });
+      const res = await axios.post(SERVER_URL+'/users/register', { username, password });
       console.log(res.data);
       return res
     } catch (err) {

@@ -5,6 +5,8 @@ import {getUserId} from "../../utilities/Utilities";
 import '../../styles/components/MakeOfferForm.css'
 import {toast} from 'react-toastify';
 
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 function itemsReducer(items, action) {
     switch (action.type) {
         case 'added': {
@@ -37,7 +39,7 @@ export default function MakeOfferForm({tradeData}) {
     const postOffer = () => {
         const haveItemsFormatted = haveItems.map(({id, ...rest}) => rest);
 
-        fetch('http://localhost:4000/offers/new', {
+        fetch(SERVER_URL+'/offers/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

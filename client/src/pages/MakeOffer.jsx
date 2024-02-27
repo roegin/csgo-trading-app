@@ -4,6 +4,8 @@ import MakeOfferForm from '../components/makeoffer/MakeOfferForm';
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
+
 export default function MakeOffer() {
     const {_id} = useParams();
     const [tradeData, setTradeData] = useState({});
@@ -11,7 +13,7 @@ export default function MakeOffer() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:4000/trades/${_id}`)
+        fetch(SERVER_URL+`/trades/${_id}`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
