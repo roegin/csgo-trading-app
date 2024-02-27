@@ -10,7 +10,13 @@ const app = express();
 // const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
 const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
 
-app.use(cors());
+
+
+app.use(cors({
+  origin: 'http://alex.shinestu.com:3000', // or '*' to allow all origins
+  methods: ['GET', 'POST'], // allowed HTTP methods
+  credentials: true // allow cookies to be sent with requests
+}));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 

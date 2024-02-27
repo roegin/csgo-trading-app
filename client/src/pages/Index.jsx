@@ -18,7 +18,7 @@ export default function Index() {
         let events = null;
 
         if (!hasRendered.current) {
-            events = new EventSource('trades/all');
+            events = new EventSource(SERVER_URL+'trades/all');
 
             events.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
