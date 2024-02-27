@@ -7,7 +7,7 @@ if (process.env.BUff_ENV === 'development') {
     console.log('SERVER_URL-development',SERVER_URL,process.env.REACT_APP_DEV_SERVER_URL,process.env.BUff_ENV)
 }else{
     SERVER_URL = process.env.REACT_APP_PROD_SERVER_URL || "http://alex.shinestu.com:4000";
-    console.log('SERVER_URL-development',SERVER_URL,process.env.REACT_APP_PROD_SERVER_URL,process.env.BUff_ENV)
+    console.log('SERVER_URL-product',SERVER_URL,process.env.REACT_APP_PROD_SERVER_URL,process.env.BUff_ENV)
 }
 
 console.log('SERVER_URL',SERVER_URL,process.env.BUff_ENV)
