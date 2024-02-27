@@ -40,8 +40,13 @@ export default function Navbar() {
             <div className="navbar-login-logout">
                 {
                     authContext.isAuthenticated ?
-                        (<NavLink to="/login" className="log-link" onClick={handleLogout}>Logout</NavLink>) :
-                        (<NavLink to="/login" className="log-link">Login</NavLink>)
+                        (<NavLink to="/login" className="log-link" onClick={handleLogout}>登出</NavLink>) :
+                        (
+                          <>
+                            <NavLink to="/login" className="log-link" style={{backgroundColor: 'lightblue', borderRadius: '5px'}}>登录</NavLink>
+                            <NavLink to="/register" className="log-link" style={{backgroundColor: 'lightgreen', borderRadius: '5px', marginLeft: '10px'}}>注册</NavLink>
+                          </>
+                        )
                 }
             </div>
         </header>
