@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const registerUser = async (username, password) => {
     try {
-      const res = await axios.post('http://localhost:4000/users/register', { username, password });
+      const res = await axios.post('http://alex.shinestu.com:4000/users/register', { username, password });
       console.log(res.data);
     } catch (err) {
       console.error(err);

@@ -37,7 +37,7 @@ export default function MakeOfferForm({tradeData}) {
     const postOffer = () => {
         const haveItemsFormatted = haveItems.map(({id, ...rest}) => rest);
 
-        fetch('http://localhost:4000/offers/new', {
+        fetch('http://alex.shinestu.com:4000/offers/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

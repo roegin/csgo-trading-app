@@ -38,7 +38,7 @@ export default function Creation() {
         const haveItemsFormatted = haveItems.map(({id, ...rest}) => rest);
         const wantItemsFormatted = wantItems.map(({id, ...rest}) => rest);
 
-        fetch('http://localhost:4000/trades/new', {
+        fetch('http://alex.shinestu.com:4000/trades/new', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

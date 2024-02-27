@@ -2,7 +2,7 @@ const axios = require('axios'); // 如果你在浏览器环境下，不需要这
 
 async function registerUser(username, password) {
     try {
-        const response = await axios.post('http://localhost:4000/users/register', {  // 修改为你自己的服务器地址
+        const response = await axios.post('http://alex.shinestu.com:4000/users/register', {  // 修改为你自己的服务器地址
             username,
             password
         });

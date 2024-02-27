@@ -16,7 +16,7 @@ export default function Index() {
         let events = null;
 
         if (!hasRendered.current) {
-            events = new EventSource('http://localhost:4000/trades/all');
+            events = new EventSource('http://alex.shinestu.com:4000/trades/all');
 
             events.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
@@ -39,7 +39,7 @@ export default function Index() {
         let offerEvents = null;
 
         if (!hasRenderedOffers.current) {
-            offerEvents = new EventSource('http://localhost:4000/offers/all');
+            offerEvents = new EventSource('http://alex.shinestu.com:4000/offers/all');
 
             offerEvents.onmessage = (event) => {
                 const parsedData = JSON.parse(event.data);
