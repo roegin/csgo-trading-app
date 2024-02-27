@@ -7,7 +7,8 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-
+// const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
+const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
 // 具体添加此处
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://alex.shinestu.com:3000');
@@ -18,8 +19,7 @@ app.use((req, res, next) => {
 
 
 
-// const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
-const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
+
 
 
 
