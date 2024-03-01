@@ -15,6 +15,22 @@ function logUserMiddleware(req, res, next) {
 
   router.use(logUserMiddleware);
 
+router.get('/profile', auth, async (req, res) => {
+    try {
+    console.log('/profile请求')
+    const data=request.body;
+
+        
+        const user = await User.findById(data.userId).populate('currency');
+        req.logUser(user); // 使用中间件方法打印用户信息
+        console.log('测试-user',user)
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
+});
+
 router.post("/register", async(req, res) => {
     const {username, password} = req.body;
 
@@ -106,20 +122,6 @@ router.get("/secure-api", auth, async (req, res) => {
 });
 
 console.log('/profile请求路由设置')
-router.get('/profile', auth, async (req, res) => {
-    try {
-    console.log('/profile请求')
-    const data=request.body;
 
-        
-     const user = await User.findById(data.userId).populate('currency');
-     req.logUser(user); // 使用中间件方法打印用户信息
-     console.log('测试-user',user)
-     res.json(user);
-    } catch (error) {
-     console.error(error);
-     res.status(500).json({ error: 'An error occurred while fetching data.' });
-    }
-   });
 
 module.exports = router;
