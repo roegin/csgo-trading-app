@@ -20,6 +20,7 @@ const [rechargeAmount, setRechargeAmount] = useState(0)
       });
 
       if(response.data.message === 'Recharge successful') {
+        console.log('测试-充值成功')
         setUser(prevUser => ({...prevUser, currency: { value: response.data.value }}));
       }
     } catch (error) {
