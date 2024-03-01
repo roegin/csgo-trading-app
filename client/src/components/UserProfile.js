@@ -1,6 +1,7 @@
 // client\src\components\UserProfile.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 const UserProfile = () => {
  const [user, setUser] = useState(null);
@@ -8,7 +9,7 @@ const UserProfile = () => {
  // 获取用户信息的函数
  const getUser = async () => {
  try {
-  const response = await axios.get("/users/profile"); // Assumes user is already logged in
+  const response = await axios.get(SERVER_URL+"/users/profile"); // Assumes user is already logged in
   setUser(response.data);
  } catch (error) {
   console.error(error);
