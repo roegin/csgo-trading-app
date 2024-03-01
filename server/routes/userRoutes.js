@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
 const router = express.Router();
+router.use(cors());
 
 function logUserMiddleware(req, res, next) {
     req.logUser = function(user) {
