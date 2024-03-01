@@ -24,7 +24,7 @@ const UserProfile = () => {
 
       setUser(response.data);
     } catch (error) {
-      console.error('获取用户信息报错',error.response);
+      console.error('获取用户信息报错',error);
     }
   };
  // 当组件挂载时，获取用户信息
