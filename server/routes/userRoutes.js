@@ -24,15 +24,12 @@ function logUserMiddleware(req, res, next) {
     // 这里应该根据你的需求来设置过滤条件
     if (true) {
       try {
-        const user = await User.findById(userId);
-  
-        // 如果用户没有currency属性，创建它并设值为0
-        if (!user.currency) {
-          user.currency = { value: 0 };
-        }
+        let user = await User.findById(userId).populate('currency');
   
         user.currency.value += rechargeValue;
-        await user.save();
+        await user.currency.save(); // 更新Currency文档
+        await user.save(); // 更新User文档
+  
         res.json({ message: 'Recharge successful', value: user.currency.value });
       } catch (error) {
         console.error(error);
