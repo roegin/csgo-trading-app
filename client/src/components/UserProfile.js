@@ -12,7 +12,13 @@ const UserProfile = () => {
       const auth_token = sessionStorage.getItem('auth-token');
 
       const response = await axios.get(SERVER_URL+"/users/profile", {
-        headers: { 'auth-token': auth_token }
+        headers: { 'auth-token': auth_token },
+        body: JSON.stringify({
+         // tradeId: tradeData._id,
+          userId: getUserId(auth_token),
+         // offered: haveItemsFormatted,
+          //for: forItems
+        })
       });
 
       setUser(response.data);
