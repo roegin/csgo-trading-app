@@ -6,6 +6,15 @@ const bcrypt = require("bcryptjs");
 
 const router = express.Router();
 
+function logUserMiddleware(req, res, next) {
+    req.logUser = function(user) {
+      console.log('测试-user', user);
+    }
+    next();
+  }
+
+  router.use(logUserMiddleware);
+
 router.post("/register", async(req, res) => {
     const {username, password} = req.body;
 
@@ -76,6 +85,7 @@ router.post("/login", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
+        req.logUser(user); // 使用中间件方法打印用户信息
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
@@ -99,6 +109,7 @@ router.get('/profile', auth, async (req, res) => {
     console.log('/profile请求')
     try {
      const user = await User.findById(req.user.id).populate('currency');
+     req.logUser(user); // 使用中间件方法打印用户信息
      console.log('测试-user',user)
      res.json(user);
     } catch (error) {
