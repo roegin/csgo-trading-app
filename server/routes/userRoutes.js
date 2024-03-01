@@ -98,6 +98,7 @@ router.get("/secure-api", auth, async (req, res) => {
 router.get('/profile', auth, async (req, res) => {
     try {
      const user = await User.findById(req.user.id).populate('currency');
+     console.log('测试-user',user)
      res.json(user);
     } catch (error) {
      console.error(error);
