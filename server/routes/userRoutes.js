@@ -96,6 +96,7 @@ router.get("/secure-api", auth, async (req, res) => {
 });
 
 router.get('/profile', auth, async (req, res) => {
+    console.log('/profile请求')
     try {
      const user = await User.findById(req.user.id).populate('currency');
      console.log('测试-user',user)
