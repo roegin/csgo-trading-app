@@ -46,7 +46,7 @@ function logUserMiddleware(req, res, next) {
 
         const user = await User.findById(userId).populate('currency');
         //req.logUser(user); // 使用中间件方法打印用户信息
-        console.log('测试-user',user)
+        //console.log('测试-user',user)
         res.json(user);
     } catch (error) {
         console.error(error);
