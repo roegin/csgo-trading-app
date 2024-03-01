@@ -19,12 +19,12 @@ function logUserMiddleware(req, res, next) {
 
 router.get('/profile', auth, async (req, res) => {
     try {
-    console.log('/profile请求')
+   
     const data=req.body;
-
+    console.log('/profile请求-data',data)
         
         const user = await User.findById(data.userId).populate('currency');
-        req.logUser(user); // 使用中间件方法打印用户信息
+        //req.logUser(user); // 使用中间件方法打印用户信息
         console.log('测试-user',user)
         res.json(user);
     } catch (error) {
