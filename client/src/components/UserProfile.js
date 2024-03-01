@@ -6,6 +6,9 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER
 
 const UserProfile = () => {
  const [user, setUser] = useState(null);
+
+// Define rechargeAmount and setRechargeAmount
+const [rechargeAmount, setRechargeAmount] = useState(0)
   const recharge = async (amount) => {
     try {
       const auth_token = sessionStorage.getItem('auth_token');
