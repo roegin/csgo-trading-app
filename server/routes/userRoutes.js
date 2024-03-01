@@ -20,38 +20,40 @@ function logUserMiddleware(req, res, next) {
   router.post('/recharge/:userId', auth, async (req, res) => {
     const userId = req.params.userId;
     const { rechargeValue } = req.body;
-   
-    if (true) { // Replace this with actual condition
-    try {
-    let user = await User.findById(userId).populate('currency');
-   
-    // Check if user has corresponding Currency document
-    if (!user.currency) {
-      // If not, create a new Currency document and save it
-      const newCurrency = new Currency({ value: 0 });
-      await newCurrency.save();
-   
-      // Assign newly created Currency document's _id to user's currency field
-      user.currency = newCurrency._id;
-    }
-    else{
-      let currency = await Currency.findById(user.currency._id);
-      currency.value += rechargeValue;
-      await currency.save(); // Update Currency document
-   
-      user = await User.findByIdAndUpdate(userId, {currency: currency._id}, {new:true}).populate('currency'); // update User document with the modified currency
-    }
-   
-    // Now you can use user.currency.value safely
-    res.json({ message: 'Recharge successful', value: user.currency.value });
-    } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred while recharging.' });
-    }
+  
+    // 这里应该根据你的需求来设置过滤条件
+    if (true) {
+      try {
+        let user = await User.findById(userId).populate('currency');
+  
+        // 检查用户是否已有对应的 Currency 文档
+        if (!user.currency) {
+          // 如果没有，创建一个新的 Currency 文档并保存
+          const newCurrency = new Currency({ value: 0, name: 'usd' });
+          await newCurrency.save();
+  
+          // 将新创建的 Currency 文档的 _id 赋值给 user 的 currency 字段
+          user.currency = newCurrency._id;
+        }else {
+            // 获取Currency对象，更新它，然后保存
+            let currency = await Currency.findById(user.currency._id);
+            currency.value += rechargeValue;
+            await currency.save();
+      
+            // 更新用户文档中的currency字段
+            user = await User.findByIdAndUpdate(userId, {currency: currency._id}, {new:true}).populate('currency');
+          }
+      
+  
+        res.json({ message: 'Recharge successful', value: user.currency.value });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while recharging.' });
+      }
     } else {
-    res.status(403).json({ error: 'User is not allowed to recharge.' });
+      res.status(403).json({ error: 'User is not allowed to recharge.' });
     }
-   });
+  });
 
   router.get('/profile/:userId', auth, async (req, res) => {
     try {
