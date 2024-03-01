@@ -25,7 +25,9 @@ function logUserMiddleware(req, res, next) {
     if (true) {
       try {
         const user = await User.findById(userId);
+        console.log('user',user)
         user.currency.value += rechargeValue;
+        console.log('user.currency.value',user.currency.value)
         await user.save();
         res.json({ message: 'Recharge successful', value: user.currency.value });
       } catch (error) {
