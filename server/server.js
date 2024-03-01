@@ -3,6 +3,7 @@ const cors = require('cors');
 const user = require("./routes/userRoutes");
 const trade = require("./routes/tradeRoutes");
 const offer = require("./routes/offerRoutes");
+const currency = require("./routes/currencyRoutes"); // 新增
 const mongoose = require("mongoose");
 
 const app = express();
@@ -32,10 +33,12 @@ app.use(express.urlencoded({extended: false}));
 app.use("/users", user);
 app.use("/trades", trade);
 app.use("/offers", offer);
+app.use("/currency", currency); // 新增
 
 const User = require("./schemas/User");
 const Trade = require("./schemas/Trade");
 const Offer = require("./schemas/Offer");
+
 
 const PORT = 4000;
 

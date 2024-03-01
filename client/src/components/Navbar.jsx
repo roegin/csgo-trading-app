@@ -35,12 +35,23 @@ export default function Navbar() {
                             Create
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/create" activeClassName="active-link" className="navbar-link">
+                            Create
+                        </NavLink>
+                    </li>
+                    
                 </ul>
             </nav>
             <div className="navbar-login-logout">
                 {
                     authContext.isAuthenticated ?
-                        (<NavLink to="/login" className="log-link" onClick={handleLogout}>登出</NavLink>) :
+                        (
+                            <>
+                            <NavLink to="/profile" className="log-link" style={{backgroundColor: 'lightblue', borderRadius: '5px'}}>个人中心</NavLink>
+                            <NavLink to="/login" className="log-link" onClick={handleLogout}>登出</NavLink>
+                          </>
+                        ) :
                         (
                           <>
                             <NavLink to="/login" className="log-link" style={{backgroundColor: 'lightblue', borderRadius: '5px'}}>登录</NavLink>

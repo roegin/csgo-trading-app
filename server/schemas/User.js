@@ -16,7 +16,12 @@ const UserSchema = mongoose.Schema({
     createdOffers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Offer"
-    }]
+    }],
+        // 新增
+    currency: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Currency"
+    }
 });
 
 module.exports = mongoose.model("User", UserSchema);

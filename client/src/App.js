@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./components/Register";
 import MakeOffer from "./pages/MakeOffer";
 import AuthProvider from "./context/AuthProvider";
+import UserProfile from "./components/UserProfile"; // Import the new component
 
 export default function App() {
  return (
@@ -22,6 +23,7 @@ export default function App() {
  <Route path='/login' element={<Login/>}/>
  <Route path='/register' element={<Register/>}/> {/* 新增 */}
  <Route path='offers/:_id' element={<MakeOffer/>}/>
+ <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
  </Routes>
  </AuthProvider>
  </Router>

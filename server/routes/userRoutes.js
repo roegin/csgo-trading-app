@@ -95,4 +95,14 @@ router.get("/secure-api", auth, async (req, res) => {
     }
 });
 
+router.get('/profile', auth, async (req, res) => {
+    try {
+     const user = await User.findById(req.user.id).populate('currency');
+     res.json(user);
+    } catch (error) {
+     console.error(error);
+     res.status(500).json({ error: 'An error occurred while fetching data.' });
+    }
+   });
+
 module.exports = router;
