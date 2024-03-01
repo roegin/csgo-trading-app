@@ -20,6 +20,7 @@ function logUserMiddleware(req, res, next) {
   router.post('/recharge/:userId', auth, async (req, res) => {
     const userId = req.params.userId;
     const { rechargeValue } = req.body;
+    //let rechargeValueNum = parseFloat(rechargeValue);
   
     // 这里应该根据你的需求来设置过滤条件
     if (true) {
@@ -40,7 +41,8 @@ function logUserMiddleware(req, res, next) {
         }else {
             // 获取Currency对象，更新它，然后保存
             let currency = await Currency.findById(user.currency._id);
-            currency.value += rechargeValue;
+            // Parse currency value and recharge value into floats before adding
+            currency.value = parseFloat(currency.value) + parseFloat(rechargeValue);
             await currency.save();
       
             // 更新用户文档中的currency字段
