@@ -34,7 +34,7 @@ const UserProfile = () => {
   {user && (
     <div>
       <h1>用户名:{user.username}</h1>
-      <p>Account balance: {user.currency.value}</p>
+      <p>Account balance: {user.currency?.value}</p>
     </div>
   )}
  </div>
