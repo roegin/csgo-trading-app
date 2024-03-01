@@ -6,6 +6,23 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER
 
 const UserProfile = () => {
  const [user, setUser] = useState(null);
+  const recharge = async (amount) => {
+    try {
+      const auth_token = sessionStorage.getItem('auth_token');
+      const response = await axios.post(SERVER_URL+"/users/recharge/" + getUserId(auth_token), { rechargeValue: amount }, {
+        headers: { 
+          'Content-Type': 'application/json',
+          'auth-token': auth_token 
+        },
+      });
+
+      if(response.data.message === 'Recharge successful') {
+        setUser(prevUser => ({...prevUser, currency: { value: response.data.value }}));
+      }
+    } catch (error) {
+      console.error('充值失败',error.response);
+    }
+  };
 
   // Get user info
   const getUser = async () => {
@@ -30,12 +47,14 @@ const UserProfile = () => {
  }, [getUser]); // 添加 getUser 为依赖项
 
  return (
- <div>
+  <div>
   {user && (
-    <div>
-      <h1>用户名:{user.username}</h1>
-      <p>Account balance: {user.currency?.value}</p>
-    </div>
+   <div>
+    <h1>用户名:{user.username}</h1>
+    <p>Account balance: {user.currency?.value}</p>
+    <input type="number" onChange={(e) => setRechargeAmount(e.target.value)} />
+    <button onClick={() => recharge(rechargeAmount)}>充值</button>
+   </div>
   )}
  </div>
  );

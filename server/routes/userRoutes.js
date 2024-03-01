@@ -17,6 +17,26 @@ function logUserMiddleware(req, res, next) {
 
   router.use(logUserMiddleware);
 
+  router.post('/recharge/:userId', auth, async (req, res) => {
+    const userId = req.params.userId;
+    const { rechargeValue } = req.body;
+  
+    // 这里应该根据你的需求来设置过滤条件
+    if (userId == "特定的用户ID") {
+      try {
+        const user = await User.findById(userId);
+        user.currency.value += rechargeValue;
+        await user.save();
+        res.json({ message: 'Recharge successful', value: user.currency.value });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while recharging.' });
+      }
+    } else {
+      res.status(403).json({ error: 'User is not allowed to recharge.' });
+    }
+  });
+
   router.get('/profile/:userId', auth, async (req, res) => {
     try {
         const userId = req.params.userId; // 从URL获取用户ID
