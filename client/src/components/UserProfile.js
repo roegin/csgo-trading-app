@@ -46,8 +46,8 @@ const [rechargeAmount, setRechargeAmount] = useState(0)
   };
  // 当组件挂载时，获取用户信息
  useEffect(() => {
- getUser();
- }, [getUser]); // 添加 getUser 为依赖项
+  getUser();
+ }, []); // 添加 getUser 为依赖项
 
  return (
   <div>
