@@ -11,7 +11,6 @@ const UserProfile = () => {
   const getUser = async () => {
     try {
       const auth_token = sessionStorage.getItem('auth_token');
-      console.log('测试-auth_token',auth_token)
 
       const response = await axios.get(SERVER_URL+"/users/profile", {
         headers: { 
@@ -35,13 +34,13 @@ const UserProfile = () => {
  // 当组件挂载时，获取用户信息
  useEffect(() => {
  getUser();
- }, []);
+ }, [getUser]); // 添加 getUser 为依赖项
 
  return (
  <div>
   {user && (
     <div>
-      <h1>{user.username}</h1>
+      <h1>用户名:{user.username}</h1>
       <p>Account balance: {user.currency.value}</p>
     </div>
   )}
