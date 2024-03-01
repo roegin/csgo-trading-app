@@ -34,6 +34,9 @@ function logUserMiddleware(req, res, next) {
   
           // 将新创建的 Currency 文档的 _id 赋值给 user 的 currency 字段
           user.currency = newCurrency._id;
+
+            // Save the user document back to the database
+            await user.save();
         }else {
             // 获取Currency对象，更新它，然后保存
             let currency = await Currency.findById(user.currency._id);
