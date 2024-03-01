@@ -17,13 +17,12 @@ function logUserMiddleware(req, res, next) {
 
   router.use(logUserMiddleware);
 
-router.get('/profile', auth, async (req, res) => {
+  router.get('/profile/:userId', auth, async (req, res) => {
     try {
-   
-    const data=req.body;
-    console.log('/profile请求-data',data)
-        
-        const user = await User.findById(data.userId).populate('currency');
+        const userId = req.params.userId; // 从URL获取用户ID
+        console.log('/profile请求-userId',userId)
+
+        const user = await User.findById(userId).populate('currency');
         //req.logUser(user); // 使用中间件方法打印用户信息
         console.log('测试-user',user)
         res.json(user);
