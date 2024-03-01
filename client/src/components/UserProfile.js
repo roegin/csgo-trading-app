@@ -14,7 +14,7 @@ const UserProfile = () => {
 
       // Send the token in the Authorization header
       const response = await axios.get(SERVER_URL+"/users/profile", {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: {                 'auth-token': token }
       });
 
       setUser(response.data);
