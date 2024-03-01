@@ -105,10 +105,13 @@ router.get("/secure-api", auth, async (req, res) => {
     }
 });
 
+console.log('/profile请求路由设置')
 router.get('/profile', auth, async (req, res) => {
     console.log('/profile请求')
+    const data=request.body;
     try {
-     const user = await User.findById(req.user.id).populate('currency');
+        
+     const user = await User.findById(data.userId).populate('currency');
      req.logUser(user); // 使用中间件方法打印用户信息
      console.log('测试-user',user)
      res.json(user);
