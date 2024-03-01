@@ -18,7 +18,7 @@ function logUserMiddleware(req, res, next) {
 router.get('/profile', auth, async (req, res) => {
     try {
     console.log('/profile请求')
-    const data=request.body;
+    const data=req.body;
 
         
         const user = await User.findById(data.userId).populate('currency');
