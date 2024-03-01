@@ -85,7 +85,7 @@ router.post("/login", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
-        req.logUser(user); // 使用中间件方法打印用户信息
+        //req.logUser(user); // 使用中间件方法打印用户信息
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
