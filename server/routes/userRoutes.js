@@ -3,6 +3,7 @@ const auth = require("../middleware/auth");
 const User = require("../schemas/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const cors = require('cors');
 
 const router = express.Router();
 router.use(cors());
