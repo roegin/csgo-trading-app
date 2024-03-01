@@ -4,7 +4,7 @@ const User = require("../schemas/User");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const cors = require('cors');
-
+const Currency = require("../schemas/Currency");
 const router = express.Router();
 router.use(cors());
 
@@ -25,6 +25,16 @@ function logUserMiddleware(req, res, next) {
     if (true) {
       try {
         let user = await User.findById(userId).populate('currency');
+  
+        // 检查用户是否已有对应的 Currency 文档
+        if (!user.currency) {
+          // 如果没有，创建一个新的 Currency 文档并保存
+          const newCurrency = new Currency({ value: 0 });
+          await newCurrency.save();
+  
+          // 将新创建的 Currency 文档的 _id 赋值给 user 的 currency 字段
+          user.currency = newCurrency._id;
+        }
   
         user.currency.value += rechargeValue;
         await user.currency.save(); // 更新Currency文档
