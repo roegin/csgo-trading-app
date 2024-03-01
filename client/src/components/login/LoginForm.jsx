@@ -43,7 +43,7 @@ export default function LoginForm() {
                     error.innerHTML = data.msg;
                 } else {
                     sessionStorage.setItem('auth_token', data.token);
-                    console.log('测试-设置auth_token',data.token)
+                    //console.log('测试-设置auth_token',data.token)
                     sessionStorage.setItem('isAuthenticated', 'true');
                     authContext.login();
                     redirect(data.token);
