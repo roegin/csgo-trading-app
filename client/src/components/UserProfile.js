@@ -10,7 +10,7 @@ const UserProfile = () => {
   // Get user info
   const getUser = async () => {
     try {
-      const auth_token = sessionStorage.getItem('auth-token');
+      const auth_token = sessionStorage.getItem('auth_token');
       console.log('测试-auth_token',auth_token)
 
       const response = await axios.get(SERVER_URL+"/users/profile", {
