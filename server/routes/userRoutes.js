@@ -22,7 +22,7 @@ function logUserMiddleware(req, res, next) {
     const { rechargeValue } = req.body;
   
     // 这里应该根据你的需求来设置过滤条件
-    if (userId == "特定的用户ID") {
+    if (userId == "roegin") {
       try {
         const user = await User.findById(userId);
         user.currency.value += rechargeValue;
