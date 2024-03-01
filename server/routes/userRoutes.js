@@ -25,9 +25,13 @@ function logUserMiddleware(req, res, next) {
     if (true) {
       try {
         const user = await User.findById(userId);
-        console.log('user',user)
+  
+        // 如果用户没有currency属性，创建它并设值为0
+        if (!user.currency) {
+          user.currency = { value: 0 };
+        }
+  
         user.currency.value += rechargeValue;
-        console.log('user.currency.value',user.currency.value)
         await user.save();
         res.json({ message: 'Recharge successful', value: user.currency.value });
       } catch (error) {
