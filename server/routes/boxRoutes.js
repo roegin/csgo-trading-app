@@ -18,7 +18,7 @@ router.post('/openbox',authMiddleware, async (req, res) => {
     const selectedItemIndex = Math.floor(Math.random() * items.length);
     const selectedItem = items[selectedItemIndex];
 
-    console.log('req.user',req.user)
+    //console.log('req.user',req.user)
     const userId = req.user.id; // 或其他方式获取当前用户ID
 
     // 更新用户物品列表
