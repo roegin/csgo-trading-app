@@ -1,6 +1,6 @@
 // client\src\App.js
-import React, { useContext, useEffect } from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Index from './pages/Index';
 import Offers from "./pages/Offers";
@@ -12,8 +12,6 @@ import AuthProvider from "./context/AuthProvider";
 import UserProfile from "./components/UserProfile"; // Import the new component
 
 import BlindBox from "./pages/BlindBox"; // 引入盲盒组件
-import { useNavigate } from 'react-router-dom';
-import AuthContext from '../context/AuthContext';
 
 import { withAuth } from './AuthGuard';
 
