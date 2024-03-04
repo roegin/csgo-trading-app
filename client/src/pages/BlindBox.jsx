@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {toast} from 'react-toastify';
+import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 export default function BlindBox() {
  const [isLoading, setIsLoading] = useState(false);
