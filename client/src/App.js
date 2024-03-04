@@ -34,8 +34,7 @@ export default function App() {
                 <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
                 <Route
                     path="/blindbox"
-                    element={isAuthenticated ? <BlindBox /> : <Navigate replace to="/login" />}
-                />
+                    element= {<BlindBox />} />
         
             </Routes>
         </AuthProvider>
