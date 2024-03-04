@@ -29,7 +29,7 @@ async function generateBlindBoxData(index) {
     }
   
     return {
-      id: index,
+      //id: index,
       items: itemIds, // 盲盒包含的物品ID数组
       // 可以添加更多盲盒属性
     };
