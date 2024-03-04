@@ -4,7 +4,13 @@ import axios from 'axios';
 
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
-const AuthContext = createContext();
+const AuthContext = createContext({
+  isAuthenticated: false, // 提供一个初始值
+  login: () => {},
+  logout: () => {},
+  registerUser: () => Promise.resolve(),
+});
+
 
 export const AuthProvider = ({ children }) => {
   const registerUser = async (username, password) => {
