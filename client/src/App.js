@@ -18,10 +18,11 @@ import { withAuth } from './AuthGuard';
 
 export default function App() {
     const { isAuthenticated } = useContext(AuthContext);
+    console.log('isAuthenticated',isAuthenticated)
  return (
-<AuthProvider>
+
     <Router>
-        
+        <AuthProvider>
             <Navbar/>
             <Routes>
                 <Route path='/' exact element={<Index/>}/>
@@ -37,8 +38,8 @@ export default function App() {
                 />
         
             </Routes>
-        
+        </AuthProvider>
     </Router>
- </AuthProvider>
+ 
  );
 }
