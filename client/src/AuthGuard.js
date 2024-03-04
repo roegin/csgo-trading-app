@@ -1,15 +1,16 @@
+// AuthGuard.js 示例
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // 修改这行
+import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from './context/AuthContext'; // 确保导入正确的上下文
 
 export function withAuth(Component) {
   return (props) => {
-    console.log('useNavigate')
-    const navigate = useNavigate(); // 更新这行
-    const auth_token = sessionStorage.getItem('auth_token');
-    console.log('已登陆')
+    const navigate = useNavigate();
+    const authContext = useContext(AuthContext); // 使用AuthContext
 
-    if (!auth_token) {
-      navigate('/login'); // 更新这行
+    if (!authContext.isAuthenticated) { // 判断是否登录
+      navigate('/login');
       return null;
     }
 
