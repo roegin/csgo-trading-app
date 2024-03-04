@@ -1,7 +1,7 @@
 // server/routes/boxRoutes.js
 const express = require('express');
 const router = express.Router();
-const authMiddleware = require('./middleware/auth'); // 调整路径以匹配你的项目结构
+const authMiddleware = require('../middleware/auth'); // 调整路径以匹配你的项目结构
 const BlindBox = require('../schemas/BlindBox');
 const User = require('../schemas/User'); // 调整路径以匹配你的项目结构
 
