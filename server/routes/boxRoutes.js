@@ -3,18 +3,30 @@ const express = require('express');
 const router = express.Router();
 const BlindBox = require('../schemas/BlindBox');
 
+// server/routes/boxRoutes.js
 router.post('/openbox', async (req, res) => {
-    try {
-      // 假设所有物品都存储在一个数组中
-      const items = await Item.find({});
-      const randomIndex = Math.floor(Math.random() * items.length);
-      const selectedItem = items[randomIndex];
-      res.json({ success: true, item: selectedItem });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: "服务器错误" });
-    }
-  });
+  try {
+    // 假设所有盲盒都有统一格式存储在BlindBox模型中
+    const blindBoxes = await BlindBox.find({});
+    const randomIndex = Math.floor(Math.random() * blindBoxes.length);
+    const selectedBox = blindBoxes[randomIndex];
+
+    // 从选中的盲盒中随机抽取一个物品
+    const items = selectedBox.items; // 假设items是存储item ObjectId的数组
+    const selectedItemIndex = Math.floor(Math.random() * items.length);
+    const selectedItem = items[selectedItemIndex];
+
+    const userId = req.user.id; // 或其他方式获取当前用户ID
+
+    // 更新用户物品列表
+    await User.findByIdAndUpdate(userId, { $push: { items: selectedItem } });
+
+    res.json({ success: true, item: selectedItem });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "服务器错误" });
+  }
+});
 
 // 添加单个盲盒接口
 router.post('/add', async (req, res) => {

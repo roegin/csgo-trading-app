@@ -142,6 +142,21 @@ router.post("/login", async (req, res) => {
     }
 });
 
+// server/routes/userRoutes.js
+router.get('/:userId/items', auth, async (req, res) => {
+    try {
+      const userId = req.params.userId;
+      const user = await User.findById(userId).populate('items'); // 假设 'items' 是存储用户物品的字段
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json(user.items);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while fetching user's items." });
+    }
+  });
+
 router.get("/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id);

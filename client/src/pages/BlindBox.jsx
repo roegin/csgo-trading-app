@@ -5,13 +5,16 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER
 export default function BlindBox() {
  const [isLoading, setIsLoading] = useState(false);
 
- const openBox = async () => {
-    setIsLoading(true);
-    try {
-        const response = await fetch(`${SERVER_URL}/openbox`, {
+    // src/pages/BlindBox.jsx
+    const openBox = async () => {
+        setIsLoading(true);
+        try {
+        const response = await fetch(`${SERVER_URL}/api/boxes/openbox`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            // body: JSON.stringify({userId}) // 传递必要信息，如用户ID
+            headers: {
+            'Content-Type': 'application/json',
+            'auth-token': sessionStorage.getItem('auth_token'), // 确保已经添加auth-token
+            },
         });
         const data = await response.json();
         if (response.ok) {
@@ -19,13 +22,13 @@ export default function BlindBox() {
         } else {
             toast.error(data.message);
         }
-        setIsLoading(false);
-    } catch (error) {
+        } catch (error) {
         console.error(error);
         toast.error('网络错误，请稍后再试');
+        } finally {
         setIsLoading(false);
-    }
- };
+        }
+    };
 
  return (
  <div>

@@ -5,10 +5,13 @@ import {getUserId} from "../utilities/Utilities";
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
 const UserProfile = () => {
- const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
+  const [items, setItems] = useState([]);
 
-// Define rechargeAmount and setRechargeAmount
-const [rechargeAmount, setRechargeAmount] = useState(0)
+ 
+
+  // Define rechargeAmount and setRechargeAmount
+  const [rechargeAmount, setRechargeAmount] = useState(0)
   const recharge = async (amount) => {
     try {
       const auth_token = sessionStorage.getItem('auth_token');
@@ -46,23 +49,48 @@ const [rechargeAmount, setRechargeAmount] = useState(0)
       console.error('获取用户信息报错',error.response);
     }
   };
- // 当组件挂载时，获取用户信息
- useEffect(() => {
-  getUser();
- }, []); // 添加 getUser 为依赖项
 
- return (
-  <div>
-  {user && (
-   <div>
-    <h1>用户名:{user.username}</h1>
-    <p>Account balance: {user.currency?.value}</p>
-    <input type="number" onChange={(e) => setRechargeAmount(e.target.value)} />
-    <button onClick={() => recharge(rechargeAmount)}>充值</button>
-   </div>
-  )}
- </div>
- );
+  // 获取用户物品信息的函数
+  // client/src/components/UserProfile.js 中获取用户物品信息的部分
+  const getUserItems = async () => {
+    try {
+      const auth_token = sessionStorage.getItem('auth_token');
+      // 更新请求路径以匹配服务端路由
+      const response = await axios.get(`${SERVER_URL}/users/${getUserId(auth_token)}/items`, {
+        headers: { 'auth-token': auth_token },
+      });
+
+      if(response.status === 200) {
+        setItems(response.data); // 假设 setUserItems 会更新状态以展示物品列表
+      }
+    } catch (error) {
+      console.error('获取用户物品信息失败', error.response);
+    }
+  };
+
+  useEffect(() => {
+
+      getUser();
+      getUserItems();
+  }, []); // 添加 getUser 为依赖项
+
+  return (
+    <div>
+      <h1>用户信息</h1>
+      {user && (
+        <div>
+          <p>用户名: {user.username}</p>
+          {/* 显示用户其他信息 */}
+        </div>
+      )}
+      <h2>我的物品列表</h2>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>{item.name} - {item.description}</li> // 根据你的数据结构调整这里的字段名
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default UserProfile;

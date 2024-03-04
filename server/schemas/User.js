@@ -21,7 +21,9 @@ const UserSchema = mongoose.Schema({
     currency: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Currency"
-    }
+    },
+    items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+
 });
 
 module.exports = mongoose.model("User", UserSchema);
