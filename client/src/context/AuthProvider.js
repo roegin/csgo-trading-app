@@ -1,6 +1,8 @@
 // client\src\context\AuthProvider.js
-import React, { useState } from 'react';
-import AuthContext from "./AuthContext";
+// client\src\context\AuthProvider.js
+import React, { createContext, useState, useEffect } from 'react';
+
+export const AuthContext = createContext();
 import axios from 'axios';
 
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
@@ -10,17 +12,21 @@ const AuthProvider = ({children}) => {
   sessionStorage.getItem('isAuthenticated') === 'true'
  );
 
- const login = () => {
-  setIsAuthenticated(true);
-  sessionStorage.setItem('isAuthenticated', 'true');
- };
+  useEffect(() => {
+    // 应用加载时，检查sessionStorage里的认证状态
+    const authStatus = sessionStorage.getItem('isAuthenticated') === 'true';
+    setIsAuthenticated(authStatus);
+  }, []);
 
- const logout = () => {
-  setIsAuthenticated(false);
-  sessionStorage.setItem('isAuthenticated', 'false');
-  // 清除其他相关sessionStorage项，比如auth-token等
-  sessionStorage.removeItem('auth_token');
- };
+  const login = () => {
+    setIsAuthenticated(true);
+    sessionStorage.setItem('isAuthenticated', 'true');
+  };
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    sessionStorage.removeItem('isAuthenticated');
+  };
 
   const registerUser = async (username, password) => {
     try {
