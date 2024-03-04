@@ -5,6 +5,7 @@ export function withAuth(Component) {
   return (props) => {
     const navigate = useNavigate(); // 更新这行
     const auth_token = sessionStorage.getItem('auth_token');
+    console.log('已登陆')
 
     if (!auth_token) {
       navigate('/login'); // 更新这行

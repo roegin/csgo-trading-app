@@ -76,11 +76,15 @@ const UserProfile = () => {
 
   return (
     <div>
-      <h1>用户信息</h1>
       {user && (
         <div>
-          <p>用户名: {user.username}</p>
-          {/* 显示用户其他信息 */}
+          <h1>用户名: {user.username}</h1>
+          {/* 展示用户余额 */}
+          <p>账户余额: {user.currency?.value || 0}</p>
+
+          {/* 充值输入和按钮 */}
+          <input type="number" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
+          <button onClick={() => recharge(rechargeAmount)}>充值</button>
         </div>
       )}
       <h2>我的物品列表</h2>
