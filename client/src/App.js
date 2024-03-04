@@ -1,7 +1,6 @@
 // client\src\App.js
-import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import AuthContext from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Index from './pages/Index';
