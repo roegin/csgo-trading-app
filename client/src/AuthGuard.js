@@ -1,14 +1,13 @@
-// AuthGuard.js - 创建一个高阶组件来包裹受保护的组件
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // 修改这行
 
 export function withAuth(Component) {
   return (props) => {
-    const history = useHistory();
+    const navigate = useNavigate(); // 更新这行
     const auth_token = sessionStorage.getItem('auth_token');
 
     if (!auth_token) {
-      history.push('/login');
+      navigate('/login'); // 更新这行
       return null;
     }
 
