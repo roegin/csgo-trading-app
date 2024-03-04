@@ -16,21 +16,26 @@ import BlindBox from "./pages/BlindBox"; // 引入盲盒组件
 import { withAuth } from './AuthGuard';
 
 export default function App() {
+    const { isAuthenticated } = useContext(AuthContext);
  return (
  <Router>
- <AuthProvider>
- <Navbar/>
- <Routes>
- <Route path='/' exact element={<Index/>}/>
- <Route path='/offers' element={<Offers/>}/>
- <Route path='/create' element={<Create/>}/>
- <Route path='/login' element={<Login/>}/>
- <Route path='/register' element={<Register/>}/> {/* 新增 */}
- <Route path='offers/:_id' element={<MakeOffer/>}/>
- <Route path='/profile' element={withAuth(UserProfile)}/> {/* Add this line */}
- <Route path='/blindbox' element={<BlindBox/>}/> {/* 使用 withAuth 包裹需要保护的组件 */}
- </Routes>
- </AuthProvider>
+    <AuthProvider>
+        <Navbar/>
+        <Routes>
+            <Route path='/' exact element={<Index/>}/>
+            <Route path='/offers' element={<Offers/>}/>
+            <Route path='/create' element={<Create/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/register' element={<Register/>}/> {/* 新增 */}
+            <Route path='offers/:_id' element={<MakeOffer/>}/>
+            <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
+            <Route
+                path="/blindbox"
+                element={isAuthenticated ? <BlindBox /> : <Navigate replace to="/login" />}
+            />
+    
+        </Routes>
+    </AuthProvider>
  </Router>
  );
 }
