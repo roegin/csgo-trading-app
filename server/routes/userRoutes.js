@@ -65,10 +65,15 @@ function logUserMiddleware(req, res, next) {
         const userId = req.params.userId; // 从URL获取用户ID
         console.log('/profile请求-userId',userId)
 
-        const user = await User.findById(userId).populate('currency');
-        //req.logUser(user); // 使用中间件方法打印用户信息
-        //console.log('测试-user',user)
-        res.json(user);
+        const user = await User.findById(userId)
+        .populate('currency') // 已存在的填充，用于获取货币详情
+        .populate({
+          path: 'items', // 填充物品详情
+          model: 'Item' // 确保 Item 模型已正确导入并使用
+        })
+        .exec();
+
+      res.json(user);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while fetching data.' });
@@ -142,11 +147,16 @@ router.post("/login", async (req, res) => {
     }
 });
 
-// server/routes/userRoutes.js
+// server/routes/userRoutes.js 中获取用户所有物品详情的接口
 router.get('/:userId/items', auth, async (req, res) => {
     try {
       const userId = req.params.userId;
-      const user = await User.findById(userId).populate('items'); // 假设 'items' 是存储用户物品的字段
+      const user = await User.findById(userId)
+        .populate({
+          path: 'items', // 填充物品详情
+          model: 'Item' // 确保 Item 模型已正确导入并使用
+        })
+        .exec();
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
@@ -155,7 +165,7 @@ router.get('/:userId/items', auth, async (req, res) => {
       console.error(error);
       res.status(500).json({ error: "An error occurred while fetching user's items." });
     }
-  });
+});
 
 router.get("/:id", async (req, res) => {
     try {

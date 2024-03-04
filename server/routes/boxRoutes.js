@@ -16,7 +16,8 @@ router.post('/openbox',authMiddleware, async (req, res) => {
     // 从选中的盲盒中随机抽取一个物品
     const items = selectedBox.items; // 假设items是存储item ObjectId的数组
     const selectedItemIndex = Math.floor(Math.random() * items.length);
-    const selectedItem = items[selectedItemIndex];
+    // server/routes/boxRoutes.js 中 openbox 接口的修改
+    const selectedItem = await Item.findById(items[selectedItemIndex]).exec(); // 确保 Item 已经导入
 
     //console.log('req.user',req.user)
     const userId = req.user.id; // 或其他方式获取当前用户ID

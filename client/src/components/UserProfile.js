@@ -90,7 +90,7 @@ const UserProfile = () => {
       <h2>我的物品列表</h2>
       <ul>
         {items.map((item, index) => (
-          <li key={index}>{item.name} - {item.description}</li> // 根据你的数据结构调整这里的字段名
+          <li key={index}>{item.itemName} - {item.description}</li> // 使用 itemName 和 description 替代 itemId
         ))}
       </ul>
     </div>

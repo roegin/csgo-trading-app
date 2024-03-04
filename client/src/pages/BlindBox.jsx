@@ -7,6 +7,8 @@ import AuthContext from '../context/AuthContext';
 export default function BlindBox() {
     const { isAuthenticated } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
+        // client/src/pages/BlindBox.jsx
+    const [openedItem, setOpenedItem] = useState(null);
   
     const openBox = async () => {
       setIsLoading(true);
@@ -20,7 +22,8 @@ export default function BlindBox() {
         });
         const data = await response.json();
         if (response.ok) {
-          toast.success(`恭喜你获得了：${data.itemName}`);
+          setOpenedItem(data.item); // 保存开出的物品信息
+          toast.success(`恭喜你获得了：${data.item.itemName}`);
         } else {
           toast.error(data.message);
         }
@@ -31,7 +34,6 @@ export default function BlindBox() {
         setIsLoading(false);
       }
     };
-  
     // 如果用户未登录，则重定向到登录页面
     if (!isAuthenticated) {
       return <Navigate replace to="/login" />;
@@ -39,6 +41,9 @@ export default function BlindBox() {
   
     return (
       <div>
+        {openedItem && (
+          <div>恭喜你获得了：{openedItem.itemName}</div>
+        )}
         <h2>盲盒开箱</h2>
         <button disabled={isLoading} onClick={openBox}>
           {isLoading ? '正在开箱...' : '打开盲盒'}
