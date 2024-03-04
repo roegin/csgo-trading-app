@@ -42,6 +42,8 @@ app.use('/api/items', itemRoutes);
 const User = require("./schemas/User");
 const Trade = require("./schemas/Trade");
 const Offer = require("./schemas/Offer");
+const Item = require("./schemas/Item");
+const BlindBox = require("./schemas/BlindBox");
 
 
 const PORT = 4000;
