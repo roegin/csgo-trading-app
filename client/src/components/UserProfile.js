@@ -4,93 +4,80 @@ import axios from 'axios';
 import {getUserId} from "../utilities/Utilities";
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
+import { toast } from 'react-toastify';
+
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
-
- 
-
-  // Define rechargeAmount and setRechargeAmount
-  const [rechargeAmount, setRechargeAmount] = useState(0)
-  const recharge = async (amount) => {
-    try {
-      const auth_token = sessionStorage.getItem('auth_token');
-      const response = await axios.post(SERVER_URL+"/users/recharge/" + getUserId(auth_token), { rechargeValue: amount }, {
-        headers: { 
-          'Content-Type': 'application/json',
-          'auth-token': auth_token 
-        },
-      });
-
-      if(response.data.message === 'Recharge successful') {
-        console.log('测试-充值成功')
-        setUser(prevUser => ({...prevUser, currency: { value: response.data.value }}));
-        getUser();
-      }
-    } catch (error) {
-      console.error('充值失败',error.response);
-    }
-  };
-
-  // Get user info
-  const getUser = async () => {
-    try {
-      const auth_token = sessionStorage.getItem('auth_token');
-
-      const response = await axios.get(SERVER_URL+"/users/profile/" + getUserId(auth_token), {
-        headers: { 
-          'Content-Type': 'application/json',
-          'auth-token': auth_token 
-        },
-      });
-
-      setUser(response.data);
-    } catch (error) {
-      console.error('获取用户信息报错',error.response);
-    }
-  };
-
-  // 获取用户物品信息的函数
-  // client/src/components/UserProfile.js 中获取用户物品信息的部分
-  const getUserItems = async () => {
-    try {
-      const auth_token = sessionStorage.getItem('auth_token');
-      // 更新请求路径以匹配服务端路由
-      const response = await axios.get(`${SERVER_URL}/users/${getUserId(auth_token)}/items`, {
-        headers: { 'auth-token': auth_token },
-      });
-
-      if(response.status === 200) {
-        setItems(response.data); // 假设 setUserItems 会更新状态以展示物品列表
-      }
-    } catch (error) {
-      console.error('获取用户物品信息失败', error.response);
-    }
-  };
+  const [rechargeAmount, setRechargeAmount] = useState('');
 
   useEffect(() => {
+    const fetchUserProfile = async () => {
+      const authToken = sessionStorage.getItem('auth_token');
+      try {
+        const response = await axios.get(`${SERVER_URL}/users/profile/${getUserId(authToken)}`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': authToken,
+          },
+        });
 
-      getUser();
-      getUserItems();
-  }, []); // 添加 getUser 为依赖项
+        setUser(response.data);
+        setItems(response.data.items); // 假设response.data.items是用户物品列表
+      } catch (error) {
+        console.error('获取用户信息失败', error.response);
+        toast.error('获取用户信息失败');
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
+  const handleRecharge = async () => {
+    const authToken = sessionStorage.getItem('auth_token');
+    try {
+      const response = await axios.post(`${SERVER_URL}/users/recharge/${getUserId(authToken)}`, 
+        { rechargeValue: rechargeAmount }, 
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token': authToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        toast.success('充值成功');
+        setUser(prevState => ({ ...prevState, currency: { value: prevState.currency.value + Number(rechargeAmount) }})); // 更新用户余额
+        setRechargeAmount(''); // 清空充值金额输入框
+      }
+    } catch (error) {
+      console.error('充值失败', error.response);
+      toast.error('充值失败');
+    }
+  };
 
   return (
     <div>
       {user && (
         <div>
           <h1>用户名: {user.username}</h1>
-          {/* 展示用户余额 */}
           <p>账户余额: {user.currency?.value || 0}</p>
 
-          {/* 充值输入和按钮 */}
-          <input type="number" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
-          <button onClick={() => recharge(rechargeAmount)}>充值</button>
+          <input 
+            type="number"
+            placeholder="充值金额"
+            value={rechargeAmount}
+            onChange={(e) => setRechargeAmount(e.target.value)}
+          />
+          <button onClick={handleRecharge}>充值</button>
         </div>
       )}
+
       <h2>我的物品列表</h2>
       <ul>
         {items.map((item, index) => (
-          <li key={index}>{item.itemName} - {item.description}</li> // 使用 itemName 和 description 替代 itemId
+          <li key={index}>{item.itemName} - {item.description}</li>
         ))}
       </ul>
     </div>
