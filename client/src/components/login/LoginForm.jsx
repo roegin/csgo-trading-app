@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import jwtDecode from 'jwt-decode';
 import '../../styles/components/LoginForm.css'
+import axios from 'axios'; // 确保已经引入axios
 
 import { SERVER_URL } from '../../config'; // 请根据实际路径调整  //SERVER_URL+'
 
@@ -21,38 +22,45 @@ export default function LoginForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+      
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         let error = document.getElementById("error-text");
-
+      
         const requestBody = {
-            username,
-            password
+          username,
+          password
         }
-
-        const res = await fetch(SERVER_URL+"/users/login", {
-            method: 'POST',
+      
+        try {
+          const response = await axios.post(SERVER_URL+"/users/login", requestBody, {
             headers: {
-                "Content-Type": 'application/json'
-            },
-            body: JSON.stringify(requestBody)
-        }).then(response => {
-            response.json().then(data => {
-                if (response.status !== 200) {
-                    error.innerHTML = data.msg;
-                } else {
-                    sessionStorage.setItem('auth_token', data.token);
-                    //console.log('测试-设置auth_token',data.token)
-                    sessionStorage.setItem('isAuthenticated', 'true');
-                    authContext.login();
-                    redirect(data.token);
-                }
-            });
-        }).catch(error => {
-            console.log(error);
-        });
-    };
+              "Content-Type": 'application/json'
+            }
+          });
+      
+          if (response.status !== 200) {
+            error.innerHTML = response.data.msg;
+          } else {
+            sessionStorage.setItem('auth_token', response.data.token);
+            sessionStorage.setItem('isAuthenticated', 'true');
+            authContext.login();
+            redirect(response.data.token);
+          }
+        } catch (err) {
+          if (err.response) {
+            // 当响应状态码超出2xx范围时执行
+            console.log(err.response.data);
+            error.innerHTML = err.response.data.msg;
+          } else if (err.request) {
+            // 请求已发出但未收到响应时执行
+            console.log(err.request);
+          } else {
+            // 在设置请求时触发了某些问题时执行
+            console.log('Error', err.message);
+          }
+        }
+      };
 
     const navigate = useNavigate();
 
