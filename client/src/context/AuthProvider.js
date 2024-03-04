@@ -10,9 +10,7 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER
 export const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
- const [isAuthenticated, setIsAuthenticated] = useState(
-  sessionStorage.getItem('isAuthenticated') === 'true'
- );
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     // 应用加载时，检查sessionStorage里的认证状态
