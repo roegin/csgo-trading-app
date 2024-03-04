@@ -11,6 +11,8 @@ import MakeOffer from "./pages/MakeOffer";
 import AuthProvider from "./context/AuthProvider";
 import UserProfile from "./components/UserProfile"; // Import the new component
 
+import BlindBox from "./pages/BlindBox"; // 引入盲盒组件
+
 export default function App() {
  return (
  <Router>
@@ -24,6 +26,7 @@ export default function App() {
  <Route path='/register' element={<Register/>}/> {/* 新增 */}
  <Route path='offers/:_id' element={<MakeOffer/>}/>
  <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
+ <Route path='/blindbox' element={<BlindBox/>}/> {/* 新增 */}
  </Routes>
  </AuthProvider>
  </Router>

@@ -4,6 +4,8 @@ const user = require("./routes/userRoutes");
 const trade = require("./routes/tradeRoutes");
 const offer = require("./routes/offerRoutes");
 const currency = require("./routes/currencyRoutes"); // 新增
+const boxRoutes = require('./routes/boxRoutes');
+const itemRoutes = require('./routes/itemRoutes'); 
 const mongoose = require("mongoose");
 
 const app = express();
@@ -34,6 +36,8 @@ app.use("/users", user);
 app.use("/trades", trade);
 app.use("/offers", offer);
 app.use("/currency", currency); // 新增
+app.use('/box', boxRoutes); // 使用/api作为基础路径
+app.use('/api/items', itemRoutes);
 
 const User = require("./schemas/User");
 const Trade = require("./schemas/Trade");

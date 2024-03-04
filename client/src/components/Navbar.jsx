@@ -36,8 +36,8 @@ export default function Navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/create" activeClassName="active-link" className="navbar-link">
-                            Create
+                        <NavLink to="/blindbox" activeClassName="active-link" className="navbar-link">
+                        盲盒
                         </NavLink>
                     </li>
                     
