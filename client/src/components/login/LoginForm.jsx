@@ -45,6 +45,7 @@ export default function LoginForm() {
             sessionStorage.setItem('auth_token', response.data.token);
             sessionStorage.setItem('isAuthenticated', 'true');
             authContext.login();
+            console.log('测试-authContext',useContext(AuthContext))
             redirect(response.data.token);
           }
         } catch (err) {
