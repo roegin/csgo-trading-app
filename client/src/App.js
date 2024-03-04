@@ -28,7 +28,7 @@ export default function App() {
  <Route path='/register' element={<Register/>}/> {/* 新增 */}
  <Route path='offers/:_id' element={<MakeOffer/>}/>
  <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
- <Route path='/blindbox' element={<BlindBox/> }/>{/* 使用 withAuth 包裹需要保护的组件 */}
+ <Route path='/blindbox' element={withAuth(BlindBox)}/> {/* 使用 withAuth 包裹需要保护的组件 */}
  </Routes>
  </AuthProvider>
  </Router>
