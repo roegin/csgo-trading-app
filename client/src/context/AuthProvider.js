@@ -2,10 +2,12 @@
 // client\src\context\AuthProvider.js
 import React, { createContext, useState, useEffect } from 'react';
 
-export const AuthContext = createContext();
+
 import axios from 'axios';
 
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
+
+export const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
  const [isAuthenticated, setIsAuthenticated] = useState(
