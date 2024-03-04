@@ -1,10 +1,12 @@
 // server/routes/boxRoutes.js
 const express = require('express');
 const router = express.Router();
+const authMiddleware = require('./middleware/auth'); // 调整路径以匹配你的项目结构
 const BlindBox = require('../schemas/BlindBox');
+const User = require('../schemas/User'); // 调整路径以匹配你的项目结构
 
 // server/routes/boxRoutes.js
-router.post('/openbox', async (req, res) => {
+router.post('/openbox',authMiddleware, async (req, res) => {
   try {
     // 假设所有盲盒都有统一格式存储在BlindBox模型中
     const blindBoxes = await BlindBox.find({});
@@ -16,6 +18,7 @@ router.post('/openbox', async (req, res) => {
     const selectedItemIndex = Math.floor(Math.random() * items.length);
     const selectedItem = items[selectedItemIndex];
 
+    console.log('req.user',req.user)
     const userId = req.user.id; // 或其他方式获取当前用户ID
 
     // 更新用户物品列表
