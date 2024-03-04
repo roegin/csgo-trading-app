@@ -1,50 +1,43 @@
-import React, { useEffect } from 'react';
+const axios = require('axios'); // 引入 axios
 
-const SERVER_URL = 'http://alex.shinestu.com:4000'; // 请替换为你的后端服务器地址
+const SERVER_URL = 'http://alex.shinestu.com:4000';
 
 // 随机生成物品名称和稀有度
 const generateRandomItem = (index) => {
     const rarityTypes = ['普通', '稀有', '罕见', '传说'];
+    const wearTypes = ['Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'];
+    const knifeTypes = ['Karambit', 'Bayonet', 'Flip Knife', 'Butterfly Knife'];
+    const finishTypes = ['Crimson Web', 'Fade', 'Asiimov', 'Slaughter'];
+   
     const rarity = rarityTypes[Math.floor(Math.random() * rarityTypes.length)];
-    return { itemName: `物品${index}`, rarity };
-};
-
+    const wear = wearTypes[Math.floor(Math.random() * wearTypes.length)];
+    const knife = knifeTypes[Math.floor(Math.random() * knifeTypes.length)];
+    const finish = finishTypes[Math.floor(Math.random() * finishTypes.length)];
+   
+    return { itemName: `物品${index}`, rarity, wear, knife, finish };
+   };
 // 创建100个随机示例物品
 const sampleItems = Array.from({ length: 100 }, (_, index) => generateRandomItem(index + 1));
 
-export default function AddSampleItems() {
-    useEffect(() => {
-        const addItemsToDatabase = async () => {
-            try {
-                const response = await fetch(`${SERVER_URL}/api/items/add`, { // 注意这里的URL已根据后端实际接口进行了更改
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(sampleItems),
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    console.log('添加成功:', data);
-                    alert('示例物品添加成功！');
-                } else {
-                    console.error('添加失败:', data.message);
-                    alert('示例物品添加失败：' + data.message);
-                }
-            } catch (error) {
-                console.error('网络错误:', error);
-                alert('网络错误，请稍后再试');
-            }
-        };
+const addItemsToDatabase = async () => {
+    try {
+        const response = await axios.post(`${SERVER_URL}/api/items/add`, sampleItems);
+        //console.log('sampleItems',sampleItems)
+        console.log('添加成功:', response.data);
+    } catch (error) {
+        if (error.response) {
+            // 请求已发出，服务器响应状态码不在 2xx 范围内
+            console.error('添加失败:', error.response.data);
+        } else if (error.request) {
+            // 请求已发出但未收到响应
+            console.error('服务器未响应:', error.request);
+        } else {
+            // 发送请求时出现了某些问题
+            console.error('请求错误:', error.message);
+        }
+    }
+};
 
-        addItemsToDatabase();
-    }, []);
+addItemsToDatabase();
 
-    return (
-        <div>
-            <h2>添加示例物品到数据库</h2>
-            <p>查看控制台以了解操作结果。</p>
-        </div>
-    );
-}
-
-// Note: 确保你的后端实现了 `/add-items` 的 POST 路由来接收和处理这些物品信息。
-// 例如，在你的Express应用中，你可能需要写一个路由处理函数来读取请求体中的物品数组，并将它们保存到数据库。
+// Note: 这个脚本应该在 Node.js 环境中运行。确保你的环境中已经安装了 axios。
