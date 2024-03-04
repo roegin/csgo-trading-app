@@ -18,7 +18,7 @@ import { withAuth } from './AuthGuard';
 
 export default function App() {
     const { isAuthenticated } = useContext(AuthContext);
-    console.log('isAuthenticated',isAuthenticated)
+    console.log('isAuthenticated',isAuthenticated,sessionStorage)
  return (
 
     <Router>
