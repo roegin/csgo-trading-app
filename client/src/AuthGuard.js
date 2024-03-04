@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import AuthContext from './context/AuthContext'; // 确保导入正确的上下文
 
 export function withAuth(Component) {
+  console.log('withAuth')
   return (props) => {
     console.log('authguard检查')
     const navigate = useNavigate();
