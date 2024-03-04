@@ -7,7 +7,7 @@ const Item = require('../schemas/Item'); // 确保路径正确
 router.post('/add', async (req, res) => {
   try {
     const { itemName, rarity, wear, knife, finish } = req.body;
-    console.log('测试-添加物品',req.body)
+    //console.log('测试-添加物品',req.body)
     const newItem = new Item({ itemName, rarity, wear, knife, finish });
     await newItem.save();
     res.json({ success: true, item: newItem });
