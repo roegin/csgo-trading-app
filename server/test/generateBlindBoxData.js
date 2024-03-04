@@ -1,3 +1,5 @@
+const axios = require('axios'); // 引入 axios
+const  SERVER_URL  = 'http://alex.shinestu.com:4000'
 // 生成随机物品数据并添加到服务器的函数，返回新物品的ID
 async function addNewItem() {
     // 随机生成物品数据，取自 [snippet 5]
