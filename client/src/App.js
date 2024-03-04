@@ -19,24 +19,26 @@ import { withAuth } from './AuthGuard';
 export default function App() {
     const { isAuthenticated } = useContext(AuthContext);
  return (
- <Router>
-    <AuthProvider>
-        <Navbar/>
-        <Routes>
-            <Route path='/' exact element={<Index/>}/>
-            <Route path='/offers' element={<Offers/>}/>
-            <Route path='/create' element={<Create/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/> {/* 新增 */}
-            <Route path='offers/:_id' element={<MakeOffer/>}/>
-            <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
-            <Route
-                path="/blindbox"
-                element={isAuthenticated ? <BlindBox /> : <Navigate replace to="/login" />}
-            />
-    
-        </Routes>
-    </AuthProvider>
- </Router>
+<AuthProvider>
+    <Router>
+        
+            <Navbar/>
+            <Routes>
+                <Route path='/' exact element={<Index/>}/>
+                <Route path='/offers' element={<Offers/>}/>
+                <Route path='/create' element={<Create/>}/>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/> {/* 新增 */}
+                <Route path='offers/:_id' element={<MakeOffer/>}/>
+                <Route path='/profile' element={<UserProfile/>}/> {/* Add this line */}
+                <Route
+                    path="/blindbox"
+                    element={isAuthenticated ? <BlindBox /> : <Navigate replace to="/login" />}
+                />
+        
+            </Routes>
+        
+    </Router>
+ </AuthProvider>
  );
 }
