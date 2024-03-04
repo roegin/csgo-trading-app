@@ -21,9 +21,8 @@ const sampleItems = Array.from({ length: 100 }, (_, index) => generateRandomItem
 
 const addItemsToDatabase = async () => {
     try {
-        const response = await axios.post(`${SERVER_URL}/api/items/add`, sampleItems);
-        //console.log('sampleItems',sampleItems)
-        console.log('添加成功:', response.data);
+        const response = await axios.post(`${SERVER_URL}/api/items/batchAdd`, sampleItems); // 修改请求的URL
+        console.log('批量添加成功:', response.data);
     } catch (error) {
         if (error.response) {
             // 请求已发出，服务器响应状态码不在 2xx 范围内

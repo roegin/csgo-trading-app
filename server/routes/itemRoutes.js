@@ -17,4 +17,17 @@ router.post('/add', async (req, res) => {
   }
 });
 
+// 批量添加物品的路由
+router.post('/batchAdd', async (req, res) => {
+  try {
+    const items = req.body; // 假设前端发送的是一个物品数组
+    // 使用 mongoose 的 insertMany 方法批量插入数据
+    await Item.insertMany(items);
+    res.status(200).json({ success: true, message: "批量添加成功" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "服务器错误" });
+  }
+});
+
 module.exports = router;
