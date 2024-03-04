@@ -10,6 +10,7 @@ export function withAuth(Component) {
     const authContext = useContext(AuthContext); // 使用AuthContext
 
     if (!authContext.isAuthenticated) { // 判断是否登录
+      console.log('未登录触发authguard')
       navigate('/login');
       return null;
     }

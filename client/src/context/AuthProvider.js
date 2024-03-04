@@ -7,7 +7,7 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER
 
 const AuthProvider = ({children}) => {
  const [isAuthenticated, setIsAuthenticated] = useState(
- sessionStorage.getItem('isAuthenticated') === 'true'
+  sessionStorage.getItem('isAuthenticated') === 'true'
  );
 
  const login = () => {
