@@ -22,10 +22,15 @@ router.post('/openbox',authMiddleware, async (req, res) => {
     //console.log('req.user',req.user)
     const userId = req.user.id; // 或其他方式获取当前用户ID
 
-    // 更新用户物品列表
-    await User.findByIdAndUpdate(userId, { $push: { items: selectedItem } });
+    // 更新用户物品列表，将盲盒中的所有物品添加至用户
+    await User.findByIdAndUpdate(
+      userId, 
+      { $push: { items: { $each: selectedBox.items } } }, // 使用 $each 将数组中的每个元素都添加到用户的 items 字段
+      { new: true }
+    ).exec();
 
-    res.json({ success: true, item: selectedItem });
+    // 响应成功信息，可以选择返回给客户端更多信息（例如盲盒中包含的具体物品）
+    res.json({ success: true, message: "盲盒开箱成功", items: selectedBox.items });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "服务器错误" });
