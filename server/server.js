@@ -9,6 +9,7 @@ const itemRoutes = require('./routes/itemRoutes');
 const mongoose = require("mongoose");
 
 const app = express();
+app.use(cors())
 
 // const MONGOURI = "mongodb://csgoAdmin:pswd123@localhost:27017/csgo_trading_app";
 const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/buff";//"mongodb://db:27017/csgo_trading_app";
@@ -20,7 +21,6 @@ const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/
 
 
 
-app.use(cors())
 
 /*
 app.get('/headers', (req, res) => {
@@ -36,7 +36,7 @@ app.use("/users", user);
 app.use("/trades", trade);
 app.use("/offers", offer);
 app.use("/currency", currency); // 新增
-app.use('/box', boxRoutes); // 使用/api作为基础路径
+app.use('/api/boxes', boxRoutes); // 使用/api作为基础路径
 app.use('/api/items', itemRoutes);
 
 const User = require("./schemas/User");
