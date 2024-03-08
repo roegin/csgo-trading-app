@@ -1,8 +1,10 @@
+//@ts-nocheck
 import React, {useState, useEffect, useRef} from 'react';
 import Filter from "../components/index/Filter";
 import Trades from "../components/index/Trades";
 import Activity from "../components/index/Activity";
 import '../styles/pages/Index.css';
+import '../styles/globals.css';
 
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 import Banner from './Banner';
@@ -91,14 +93,14 @@ export default function Index() {
                 <div className="container space-y-12 px-4 md:px-6">
                 <div className="grid gap-4 items-center lg:grid-cols-2 xl:gap-8">
                     <div className="space-y-4">
-                    <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">The Best Deals in Town</h1>
+                    <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">大量盲盒优惠抽取</h1>
                     <p className="text-gray-500 dark:text-gray-400">
                         Find the hottest deals, newly added products, and user recommendations.
                     </p>
                     </div>
                     <div className="flex items-center justify-start space-x-4">
                     <Button size="lg" variant="outline">
-                        View All
+                        查看更多
                     </Button>
                     </div>
                 </div>
@@ -112,7 +114,7 @@ export default function Index() {
                         width="500"
                     />
                     <div className="flex flex-col gap-1.5">
-                        <h3 className="text-base font-medium leading-none">Product Title</h3>
+                        <h3 className="text-base font-medium leading-none">最新限量武器一元抽</h3>
                         <p className="text-sm text-gray-500 dark:text-gray-400">
                         Product description that might be two lines on mobile but can be longer on tablet and desktop to show
                         more information about the product.
