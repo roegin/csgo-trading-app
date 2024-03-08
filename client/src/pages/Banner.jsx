@@ -3,7 +3,8 @@
  * @see https://v0.dev/t/IZrYsoNjwff
  * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
  */
-import { Button } from "../components/ui/button"
+import { Button } from "@/components/ui/button"
+import '../styles/globals.css';
 
 export default function Banner() {
   return (
@@ -11,14 +12,14 @@ export default function Banner() {
       <div className="container space-y-12 px-4 md:px-6">
         <div className="grid gap-4 items-center lg:grid-cols-2 xl:gap-8">
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">The Best Deals in Town</h1>
+            <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">大量盲盒优惠抽取</h1>
             <p className="text-gray-500 dark:text-gray-400">
               Find the hottest deals, newly added products, and user recommendations.
             </p>
           </div>
           <div className="flex items-center justify-start space-x-4">
             <Button size="lg" variant="outline">
-              View All
+              查看更多
             </Button>
           </div>
         </div>
