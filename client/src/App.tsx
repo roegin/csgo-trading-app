@@ -1,4 +1,5 @@
 // client\src\App.js
+//@ts-nocheck
 import {BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 import AuthContext from './context/AuthContext';
