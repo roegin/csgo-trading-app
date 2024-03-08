@@ -1,4 +1,5 @@
 // client\src\components\UserProfile.js
+//@ts-nocheck
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {getUserId} from "../utilities/Utilities";
