@@ -5,10 +5,11 @@ import axios from 'axios';
 import {getUserId} from "../utilities/Utilities";
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
-import { Card, CardTitle, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Card, CardTitle, CardDescription, CardHeader, CardContent } from '@/components/ui/card';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
