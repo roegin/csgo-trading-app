@@ -5,6 +5,11 @@ import axios from 'axios';
 import {getUserId} from "../utilities/Utilities";
 import { SERVER_URL } from '../config'; // 请根据实际路径调整  //SERVER_URL+'
 
+import { Card, CardTitle, CardDescription, CardHeader, CardContent } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+
 const UserProfile = () => {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
@@ -78,22 +83,32 @@ const UserProfile = () => {
   return (
     <div>
       {user && (
-        <div>
-          <h1>用户名: {user.username}</h1>
-          {/* 展示用户余额 */}
-          <p>账户余额: {user.currency?.value || 0}</p>
-
-          {/* 充值输入和按钮 */}
-          <input type="number" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
-          <button onClick={() => recharge(rechargeAmount)}>充值</button>
-        </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>个人中心</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div>用户名: {user.username}</div>
+            <div>账户余额: {user.currency?.value || 0}</div>
+            {/* 充值部分 */}
+            <Label>充值金额</Label>
+            <Input type="number" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
+            <Button onClick={() => recharge(rechargeAmount)}>充值</Button>
+          </CardContent>
+        </Card>
       )}
-      <h2>我的物品列表</h2>
-      <ul>
-        {items.map((item, index) => (
-          <li key={index}>{item.itemName} - {item.description}</li> // 使用 itemName 和 description 替代 itemId
-        ))}
-      </ul>
+      {/* 物品列表部分 */}
+      <Card>
+        <CardHeader>
+          <CardTitle>我的物品列表</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {items.map((item, index) => (
+            <CardDescription key={index}>{item.itemName} - {item.description}</CardDescription>
+            // 使用 itemName 和 description 替代 itemId
+          ))}
+        </CardContent>
+      </Card>
     </div>
   );
 };
