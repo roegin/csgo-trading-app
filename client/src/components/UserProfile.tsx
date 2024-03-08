@@ -82,35 +82,34 @@ const UserProfile = () => {
   }, []); // 添加 getUser 为依赖项
 
   return (
-    <div>
-      {user && (
-        <Card>
-          <CardHeader>
-            <CardTitle>个人中心</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div>用户名: {user.username}</div>
-            <div>账户余额: {user.currency?.value || 0}</div>
-            {/* 充值部分 */}
-            <Label>充值金额</Label>
-            <Input type="number" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
-            <Button onClick={() => recharge(rechargeAmount)}>充值</Button>
-          </CardContent>
-        </Card>
-      )}
-      {/* 物品列表部分 */}
-      <Card>
-        <CardHeader>
-          <CardTitle>我的物品列表</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {items.map((item, index) => (
-            <CardDescription key={index}>{item.itemName} - {item.description}</CardDescription>
-            // 使用 itemName 和 description 替代 itemId
-          ))}
-        </CardContent>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader>个人中心</CardHeader>
+      <CardContent>
+        {user && (
+          <>
+            <div className="grid gap-4 md:grid-cols-2">
+              <div>
+                <div className="text-3xl font-bold">$100.00</div>
+                <div className="text-sm text-gray-500 dark:text-gray-400">账户余额</div>
+              </div>
+              <div>
+                <Label>充值金额</Label>
+                <Input type="number" value={rechargeAmount} onChange={e => setRechargeAmount(e.target.value)} />
+                <Button onClick={() => recharge(rechargeAmount)}>充值</Button>
+              </div>
+            </div>
+
+            <CardTitle>用户名: {user.username}</CardTitle>
+            <CardDescription>账户余额: {user.currency?.value || 0}</CardDescription>
+
+            <CardTitle>我的物品列表</CardTitle>
+            {items.map((item, index) => (
+              <CardDescription key={index}>{item.itemName} - {item.description}</CardDescription>
+            ))}
+          </>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
