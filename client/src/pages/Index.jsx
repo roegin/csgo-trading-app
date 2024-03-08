@@ -84,18 +84,21 @@ export default function Index() {
     };
 
     return (
-        <div className="grid-container">
-            <div className="left-sidebar">
-                <Filter selectedCount={selectedCheckboxes.length}
-                        onCheckboxChange={handleCheckboxChange}/>
+        <>
+            <Banner /> {/* 在页面内容上方添加Banner组件 */}
+            <div className="grid-container">
+                <div className="left-sidebar">
+                    <Filter selectedCount={selectedCheckboxes.length}
+                            onCheckboxChange={handleCheckboxChange}/>
+                </div>
+                <div className="content">
+                    <Trades data={filteredData}/>
+                </div>
+                <div className="right-sidebar">
+                    <Activity data={offerData}/>
+                </div>
             </div>
-            <div className="content">
-                <Trades data={filteredData}/>
-            </div>
-            <div className="right-sidebar">
-                <Activity data={offerData}/>
-            </div>
-        </div>
+        </>
     );
 }
 
