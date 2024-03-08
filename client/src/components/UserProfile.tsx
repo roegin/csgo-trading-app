@@ -82,34 +82,57 @@ const UserProfile = () => {
   }, []); // 添加 getUser 为依赖项
 
   return (
-    <Card>
-      <CardHeader>个人中心</CardHeader>
-      <CardContent>
-        {user && (
-          <>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <div className="text-3xl font-bold">$100.00</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400">账户余额</div>
-              </div>
-              <div>
-                <Label>充值金额</Label>
-                <Input type="number" value={rechargeAmount} onChange={e => setRechargeAmount(e.target.value)} />
-                <Button onClick={() => recharge(rechargeAmount)}>充值</Button>
-              </div>
+    <>
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardHeader>
+          <CardTitle>个人中心</CardTitle>
+          <CardDescription>欢迎, 您的余额是 {user?.currency?.value || 0}. 您可以在下方充值您的账户。</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2">
+            <div>
+              <div className="text-3xl font-bold">{user?.currency?.value || 0}</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">账户余额</div>
             </div>
-
-            <CardTitle>用户名: {user.username}</CardTitle>
-            <CardDescription>账户余额: {user.currency?.value || 0}</CardDescription>
-
-            <CardTitle>我的物品列表</CardTitle>
+            <div>
+              <div className="flex flex-col gap-1">
+                <Label className="text-sm" htmlFor="recharge">
+                  充值金额
+                </Label>
+                <Input id="recharge" placeholder="$ 输入金额" value={rechargeAmount} onChange={(e) => setRechargeAmount(e.target.value)} />
+              </div>
+              <Button className="w-full" onClick={() => recharge(rechargeAmount)}>充值</Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+      <Card className="w-full max-w-2xl mx-auto">
+        <CardHeader>
+          <CardTitle>我的物品</CardTitle>
+          <CardDescription>您购买了以下物品。享受您的购物！</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4">
             {items.map((item, index) => (
-              <CardDescription key={index}>{item.itemName} - {item.description}</CardDescription>
+              <div key={index} className="flex items-center gap-4">
+                <img
+                  alt="Thumbnail"
+                  className="rounded-lg"
+                  height="100"
+                  src={item.imageUrl || "/placeholder.svg"} // 假设每个物品有 imageUrl 属性
+                  style={{ aspectRatio: "100/100", objectFit: "cover" }}
+                  width="100"
+                />
+                <div className="grid gap-1 text-sm">
+                  <div className="font-semibold">{item.itemName}</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">{item.description}</div>
+                </div>
+              </div>
             ))}
-          </>
-        )}
-      </CardContent>
-    </Card>
+          </div>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 
