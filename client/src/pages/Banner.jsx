@@ -41,34 +41,14 @@ export default function Banner() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto">
-        <div className="flex justify-between mx-4 md:mx-6 lg:mx-0">
-          {ads.map((ad, index) => (
-            <Card key={index} className="max-w-sm rounded overflow-hidden shadow-lg flex-1 mx-2">
-              <div className="relative">
-                <img
-                  alt="Ad"
-                  className="w-full"
-                  src={ad.image}
-                  style={{
-                    aspectRatio: "16/9",
-                    objectFit: "cover",
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <CardContent className="px-6 py-4">
-                    <CardTitle className="font-bold text-xl mb-2 text-white">{ad.title}</CardTitle>
-                    <p className="text-gray-300 text-base">{ad.description}</p>
-                  </CardContent>
-                </div>
-              </div>
-              <CardFooter className="px-6 pt-4 pb-2">
-                <Button className="text-sm bg-transparent border border-gray-500 text-gray-500 hover:bg-gray-700 hover:text-white">了解更多</Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+      <div className="container space-y-12 px-4 md:px-6">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {/* 使用数据生成广告模块 */}
+        {ads.map((ad, index) => (
+          <AdModule key={index} image={ad.image} title={ad.title} description={ad.description} />
+        ))}
       </div>
+    </div>
     </section>
   );
 }
