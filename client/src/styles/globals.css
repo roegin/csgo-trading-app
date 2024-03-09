@@ -4,36 +4,29 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 47.4% 11.2%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 47.4% 11.2%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 210 40% 98%;
-
-    --ring: 215 20.2% 65.1%;
-
-    --radius: 0.5rem;
+    --background: 225 64% 13%;  /* 深蓝色背景 */
+    --foreground: 40 90% 60%;   /* 霓虹蓝作为前景色 */
+  
+    --primary: 330 100% 50%;    /* 霓虹粉红色 */
+    --primary-foreground: 210 40% 98%; /* 白色文本 */
+  
+    --secondary: 140 100% 40%;  /* 霓虹绿色 */
+    --secondary-foreground: 210 40% 98%; /* 白色文本 */
+  
+    --accent: 60 100% 50%;      /* 霓虹黄色 */
+    --accent-foreground: 222.2 47.4% 11.2%; /* 深色文本 */
+  
+    --destructive: 0 80% 50%;   /* 明亮的红色 */
+    --destructive-foreground: 210 40% 98%; /* 白色文本 */
+  
+    --ring: 216 34% 17%;        /* 柔和蓝色，用于轮廓 */
+    
+    --input: 214.3 31.8% 91.4%; /* 浅色输入框 */
+    --border: 290 100% 50%;     /* 霓虹紫色，用于边框 */
+    --card: 0 0% 15%;           /* 深色卡片背景 */
+    --card-foreground: 222.2 47.4% 11.2%; /* 深色文本 */
+  
+    --radius: 0.5rem;           /* 边角半径，保持一致性 */
   }
 
   .dark {
@@ -77,5 +70,25 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: url('banner1.jpg'); /* 替换为您的图片路径 */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+  
+  /* 创建一个伪元素作为渐变遮罩 */
+  body::after {
+    content: '';
+    position: absolute;
+    top: 300px; /* 从距顶部150px的位置开始渐变，可以按需调整 */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom, 
+      rgba(0, 0, 0, 0) 0, 
+      hsl(224, 71%, 4%) 500px /* 这里的100px是渐变长度，也可以按需调整 */
+    );
+    z-index: -1; /* 确保遮罩在内容下方 */
   }
 }

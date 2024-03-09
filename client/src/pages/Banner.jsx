@@ -6,18 +6,18 @@ export default function Banner() {
     <section className="w-full py-12 md:py-24 lg:py-5">
       <div 
         className="container space-y-12 px-4 md:px-6 py-36"
-        style={{ backgroundImage: "url('/banner1.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
+        style={{ backgroundImage: "url('/banner.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="grid gap-4 items-center lg:grid-cols-2 xl:gap-8">
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">大量盲盒优惠抽取</h1>
+            <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">Unlock the Unknown! Dive into our Mystery Boxes for a chance to discover exclusive in-game treasures.</h1>
             <p className="text-gray-500 dark:text-gray-400">
-              Find the hottest deals, newly added products, and user recommendations.
+            Epic Loot Awaits! Grab a Blind Box and get ready for surprises that will elevate your game..
             </p>
           </div>
           <div className="flex items-center justify-start space-x-4">
             <Button size="lg" variant="outline">
-              查看更多
+              More
             </Button>
           </div>
         </div>

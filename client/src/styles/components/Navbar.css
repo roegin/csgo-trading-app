@@ -1,25 +1,24 @@
 .navbar {
-    background-color: #fff;
-    padding: 12px;
-    position: sticky;
-    border-bottom: 1px solid #dcdcdd;
+    background-color: hsl(var(--background)); /* 使用深色背景 */
+    border-bottom: 1px solid hsl(var(--border));
     display: flex;
     align-items: center;
+    padding: 12px;
+    position: sticky;
 }
 
 .navbar h1 {
-    margin:0;
-    color: #000;
+    margin: 0;
+    color: hsl(var(--primary)); /* logo文字改为霓虹色 */
     font-size: 1.5em;
-    text-decoration: none;
 }
 
 .navbar-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
     display: flex;
     align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .navbar-menu li {
@@ -36,19 +35,19 @@
 }
 
 .log-link {
-    color: #6d6d6d;
+    color: hsl(var(--primary)); /* 登录和注册链接调整为霓虹色 */
     text-decoration: none;
 }
 
 .log-link:hover {
-    color: #000;
+    color: hsl(var(--accent)); /* 鼠标悬停时的颜色 */
 }
 
 .navbar-link {
-    color: #6d6d6d;
+    color: hsl(var(--primary-foreground));
     text-decoration: none;
 }
 
 .navbar-link:hover {
-    color: #000;
+    color: hsl(var(--accent));
 }
