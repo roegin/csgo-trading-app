@@ -70,25 +70,16 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: url('banner1.jpg'); /* 替换为您的图片路径 */
+    background-color: hsl(224, 71%, 4%); /* 深蓝色背景 */
+  }
+  
+  /* 仅在主页应用特定背景样式 */
+  .homepage {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 150px, hsl(224, 71%, 4%) 800px), url('banner1.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
   }
+
   
-  /* 创建一个伪元素作为渐变遮罩 */
-  body::after {
-    content: '';
-    position: absolute;
-    top: 300px; /* 从距顶部150px的位置开始渐变，可以按需调整 */
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to bottom, 
-      rgba(0, 0, 0, 0) 0, 
-      hsl(224, 71%, 4%) 500px /* 这里的100px是渐变长度，也可以按需调整 */
-    );
-    z-index: -1; /* 确保遮罩在内容下方 */
-  }
 }
