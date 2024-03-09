@@ -24,8 +24,7 @@ export default function Banner() {
     ];
   return (
     <section className="w-full py-12 md:py-24 lg:py-5">
-      <div 
-        className="container space-y-12 px-4 md:px-6 py-36"
+      <div className="container space-y-12 px-4 md:px-6 py-36"
         style={{ backgroundImage: "url('/banner.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="grid gap-4 items-center lg:grid-cols-2 xl:gap-8">
@@ -42,11 +41,10 @@ export default function Banner() {
           </div>
         </div>
       </div>
-      <div className="container mx-auto space-y-12 px-4 md:px-6">
-        {/* Cards container with flex display */}
-        <div className="flex flex-wrap justify-center gap-4">
+      <div className="container mx-auto">
+        <div className="flex justify-between mx-4 md:mx-6 lg:mx-0">
           {ads.map((ad, index) => (
-            <Card key={index} className="max-w-sm rounded overflow-hidden shadow-lg">
+            <Card key={index} className="max-w-sm rounded overflow-hidden shadow-lg flex-1 mx-2">
               <div className="relative">
                 <img
                   alt="Ad"
