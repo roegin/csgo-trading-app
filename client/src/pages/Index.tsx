@@ -88,7 +88,7 @@ export default function Index() {
 
     return (
     <div className="container mx-auto p-4">
-      <Banner />  {/* 使用Tailwind CSS调整Banner样式 */}
+      <Banner />  
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-1 md:col-span-1">
           <Filter onCheckboxChange={handleCheckboxChange} />
