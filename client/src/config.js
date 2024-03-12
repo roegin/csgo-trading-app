@@ -6,7 +6,7 @@ if (process.env.BUff_ENV === 'development') {
     SERVER_URL = process.env.REACT_APP_DEV_SERVER_URL || "http://localhost:4000";
     console.log('SERVER_URL-development',SERVER_URL,process.env.REACT_APP_DEV_SERVER_URL,process.env.BUff_ENV)
 }else{
-    SERVER_URL = process.env.REACT_APP_PROD_SERVER_URL || "https://alex.shinestu.com:4000";
+    SERVER_URL = process.env.REACT_APP_PROD_SERVER_URL || "https://bufftrader.com:4000";
     console.log('SERVER_URL-product',SERVER_URL,process.env.REACT_APP_PROD_SERVER_URL,process.env.BUff_ENV)
 }
 
