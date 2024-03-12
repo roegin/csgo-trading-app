@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import '../styles/globals.css';
 import { Card, CardTitle, CardDescription, CardHeader, CardContent,CardFooter } from '@/components/ui/card';
 
+//chat: - 调整css:https://chat.openai.com/c/31ce49a6-9a5d-47e8-baff-8687050e2ae3
+
 export default function Banner() {
     // 三个广告的数据，可以根据需要从服务器获取或者定义在其他地方
     const ads = [
