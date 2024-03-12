@@ -83,3 +83,10 @@
 
   
 }
+
+/* filepath: client\src\styles\globals.css */
+.container {
+  max-width: 1200px; /* 或您希望的最大宽度 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0 15px; /* 留点内边距, 根据实际需要调整 */
+}

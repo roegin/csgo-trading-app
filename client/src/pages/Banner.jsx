@@ -24,12 +24,12 @@ export default function Banner() {
     ];
   return (
     <section className="w-full py-12 md:py-24 lg:py-5">
-      <div className="container space-y-12 px-4 md:px-6 py-36"
+      <div className="container space-y-12 px-4 md:px-6 py-36 mt-10 md:mt-20 mb-10 md:mb-20"
         style={{ backgroundImage: "url('/banner.jpg')", backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}
       >
         <div className="grid gap-4 items-center lg:grid-cols-2 xl:gap-8">
           <div className="space-y-4">
-            <h1 className="text-3xl font-bold tracking-tighter lg:text-5xl xl:text-6xl">Unlock the Unknown! Dive into our Mystery Boxes for a chance to discover exclusive in-game treasures.</h1>
+            <h1 className="text-3xl font-bold tracking-tighter lg:text-3xl xl:text-6xl">Unlock the Unknown! Dive into our Mystery Boxes for a chance to discover exclusive in-game treasures.</h1>
             <p className="text-gray-500 dark:text-gray-400">
             Epic Loot Awaits! Grab a Blind Box and get ready for surprises that will elevate your game..
             </p>
