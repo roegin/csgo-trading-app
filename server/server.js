@@ -7,6 +7,8 @@ const currency = require("./routes/currencyRoutes"); // 新增
 const boxRoutes = require('./routes/boxRoutes');
 const itemRoutes = require('./routes/itemRoutes'); 
 const mongoose = require("mongoose");
+const fs = require('fs');
+const https = require('https');
 
 const app = express();
 app.use(cors())
@@ -17,8 +19,13 @@ const MONGOURI = "mongodb+srv://roegin:tideland@alexmongodb.wfchfom.mongodb.net/
 
 
 
+const httpsOptions = {
+    key: fs.readFileSync('C:\\Certbot\\live\\bufftrader.com\\privkey.pem'),
+    cert: fs.readFileSync('C:\\Certbot\\live\\bufftrader.com\\fullchain.pem')
+   };
 
-
+   // 创建 HTTPS 服务器
+const httpsServer = https.createServer(httpsOptions, app);
 
 
 
@@ -49,15 +56,18 @@ const BlindBox = require("./schemas/BlindBox");
 const PORT = 4000;
 
 mongoose.connect(MONGOURI)
-    .then(() => {
-        console.log("Connected to MDB");
-        app.listen(PORT, () => {
-            console.log(`Node is running on port ${PORT}`);
-        });
-    })
-    .catch((error) => {
-        console.log(error);
+  .then(() => {
+    console.log("Connected to MongoDB");
+    // 创建 HTTPS 服务器实例并监听
+    const httpsServer = https.createServer(httpsOptions, app);
+    //const PORT = process.env.PORT || 443;
+    httpsServer.listen(PORT, () => {
+      console.log(`HTTPS server running on port ${PORT}`);
     });
+  })
+  .catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+  });
 
 
 console.log('服务器启动 3.')
