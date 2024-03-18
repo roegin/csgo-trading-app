@@ -1,5 +1,5 @@
 const axios = require('axios'); // 引入 axios
-const  SERVER_URL  = 'http://alex.shinestu.com:4000'
+const  SERVER_URL  = 'https://bufftrader.com:4000'
 const { generateBlindBoxData } = require('./generateBlindBoxData');
 
 
@@ -13,7 +13,7 @@ async function addBlindBoxesToServer() {
       blindBoxes.push(blindBoxData);
     }
   
-    console.log('待添加盲盒',blindBoxes)
+    //console.log('待添加盲盒',blindBoxes)
 
     try {
       console.log('url', `${SERVER_URL}/api/boxes/batchAdd`);
