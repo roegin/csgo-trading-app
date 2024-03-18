@@ -43,14 +43,16 @@ export default function Banner() {
           </div>
         </div>
       </div>
+      {/*
       <div className="container space-y-12 px-4 md:px-6">
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {/* 使用数据生成广告模块 */}
-        {ads.map((ad, index) => (
-          <AdModule key={index} image={ad.image} title={ad.title} description={ad.description} />
-        ))}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+          {ads.map((ad, index) => (
+            <AdModule key={index} image={ad.image} title={ad.title} description={ad.description} />
+          ))}
+        </div>
       </div>
-    </div>
+      */}
     </section>
   );
 }

@@ -1,6 +1,11 @@
 const axios = require('axios'); // 引入 axios
-const  SERVER_URL  = 'http://alex.shinestu.com:4000'
+const  SERVER_URL  = 'https://bufftrader.com:4000'
 // 生成随机物品数据并添加到服务器的函数，返回新物品的ID
+
+// 引入可能需要的额外变量，这里仅假设实现
+const types = ['normal', 'rare', 'epic'];
+const priceByType = { normal: 10, rare: 50, epic: 100 };
+
 async function addNewItem() {
     // 随机生成物品数据，取自 [snippet 5]
     const rarityTypes = ['普通', '稀有', '罕见', '传说'];
@@ -21,18 +26,25 @@ async function addNewItem() {
   }
 
   // 为每个盲盒生成物品并构造盲盒数据的函数
-async function generateBlindBoxData(index) {
+  async function generateBlindBoxData(index) {
     let itemIds = [];
-    for (let i = 0; i < 3; i++) { // 假设每个盲盒包含3个物品
-      const itemId = await addNewItem(); // 创建物品并获取ID
-      itemIds.push(itemId);
+    for (let i = 0; i < 3; i++) {
+        const itemId = await addNewItem(); // 创建物品并获取ID
+        itemIds.push(itemId);
     }
-  
-    return {
-      //id: index,
-      items: itemIds, // 盲盒包含的物品ID数组
-      // 可以添加更多盲盒属性
-    };
-  }
 
-  module.exports = { generateBlindBoxData };
+    // 随机选择一个类型
+    const typeIndex = Math.floor(Math.random() * types.length);
+    const type = types[typeIndex];
+    const price = priceByType[type];
+
+    return {
+        items: itemIds, // 盲盒包含的物品ID数组
+        type, // 新增类型字段
+        price, // 新增价格字段
+    };
+}
+
+//generateBlindBoxData()
+
+module.exports = { generateBlindBoxData };

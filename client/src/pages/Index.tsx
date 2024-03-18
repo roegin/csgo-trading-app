@@ -8,7 +8,7 @@ import '../styles/globals.css';
 import { SERVER_URL } from '../config'; // 请根据实际路径调整 //SERVER_URL+' 
 import Banner from './Banner';
 import { Button } from "@/components/ui/button"; // 确保路径正确
-import { BlindBoxDisplay } from '@/components/BlindBoxDisplay';
+import { BlindBoxDisplay } from '@/components/blindBox/BlindBoxDisplay';
 
 export default function Index() {
     const [data, setData] = useState([]);
@@ -90,8 +90,10 @@ export default function Index() {
     return (
     <div className="homepage w-full h-full"> 
         <div className="container mx-auto p-4">
+
         <Banner />  
         <BlindBoxDisplay />
+        {/*}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="col-span-1 md:col-span-1">
             <Filter onCheckboxChange={handleCheckboxChange} />
@@ -103,6 +105,7 @@ export default function Index() {
             <Activity data={offerData} />
             </div>
         </div>
+    */}
         </div>
     </div>
     );
