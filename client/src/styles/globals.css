@@ -100,8 +100,8 @@
 }
 
 .card {
-  @apply bg-card shadow-lg rounded-lg overflow-hidden;
-  --card-foreground: 210 40% 98%; /* 文字颜色 */
+  @apply bg-card text-card-foreground shadow-lg rounded-lg overflow-hidden;
+  /* 其他你想要的样式 */
 }
 
 .card-title,

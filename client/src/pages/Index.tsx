@@ -17,6 +17,8 @@ export default function Index() {
     const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
     const hasRendered = useRef(false);
     const hasRenderedOffers = useRef(false);
+    const [activeTab, setActiveTab] = useState('blindBox'); // 新增tab状态
+
 
     useEffect(() => {
         let events = null;
@@ -87,27 +89,45 @@ export default function Index() {
         setSelectedCheckboxes(selectedItems);
     };
 
-    return (
-    <div className="homepage w-full h-full"> 
-        <div className="container mx-auto p-4">
+    // Tab切换逻辑
+    const handleTabChange = (tabName) => {
+        setActiveTab(tabName);
+    };
 
-        <Banner />  
-        <BlindBoxDisplay />
-        {/*}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="col-span-1 md:col-span-1">
-            <Filter onCheckboxChange={handleCheckboxChange} />
-            </div>
-            <div className="col-span-2 md:col-span-2">
-            <Trades data={filteredData} />
-            </div>
-            <div className="col-span-1 md:col-span-1">
-            <Activity data={offerData} />
+    return (
+        <div className="homepage w-full h-full">
+            <div className="container mx-auto p-4">
+                <Banner />
+
+                {/* Tab切换按钮 */}
+                <div className="flex border-b mb-4">
+                    <div onClick={() => handleTabChange('blindBox')}
+                         className={`py-2 px-6 ${activeTab === 'blindBox' ? 'bg-primary text-primary-foreground border-b-4 border-accent' : 'bg-background text-foreground border-b-4 border-transparent hover:border-accent hover:text-accent'}`}>
+                        盲盒
+                    </div>
+                    <div onClick={() => handleTabChange('trade')}
+                         className={`py-2 px-6 ${activeTab === 'trade' ? 'bg-primary text-primary-foreground border-b-4 border-accent' : 'bg-background text-foreground border-b-4 border-transparent hover:border-accent hover:text-accent'}`}>
+                        交易
+                    </div>
+                </div>
+
+                {/* 根据选中的Tab渲染相应组件 */}
+                {activeTab === 'blindBox' && <BlindBoxDisplay />}
+                {activeTab === 'trade' && 
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div className="col-span-1 md:col-span-1">
+                            <Filter onCheckboxChange={handleCheckboxChange} />
+                        </div>
+                        <div className="col-span-2 md:col-span-2">
+                            <Trades data={filteredData} />
+                        </div>
+                        <div className="col-span-1 md:col-span-1">
+                            <Activity data={offerData} />
+                        </div>
+                    </div>
+                }
             </div>
         </div>
-    */}
-        </div>
-    </div>
     );
 }
 
