@@ -65,54 +65,55 @@ export const BlindBoxDisplay: React.FC = () => {
 
  return (
   <main className="flex flex-col items-center bg-transparent p-4 gap-4">
-         <header className="w-full max-w-2xl">
-        <h1 className="text-3xl font-bold text-center text-white ">BlindBox</h1>
-      </header>
-   {/* 筛选按钮 */}
-   <div className="w-full flex justify-between items-center mb-4">
-   <div className="flex gap-2">
-     <button onClick={() => filterBoxes("All")} className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150">All</button>
-     <button onClick={() => filterBoxes("rare")} className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150">Rare</button>
-     {/* 更多按钮样式调整 */}
-   </div>
-        {/* 考虑在这里添加搜索输入框 */}
+            <header className="w-full max-w-2xl">
+            <h1 className="text-3xl font-bold text-center text-white ">BlindBox</h1>
+          </header>
+      {/* 筛选按钮 */}
+      <div className="w-full flex justify-between items-center mb-4">
+      <div className="flex gap-2">
+        <button onClick={() => filterBoxes("All")} className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150">All</button>
+        <button onClick={() => filterBoxes("rare")} className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150">Rare</button>
+        {/* 更多按钮样式调整 */}
       </div>
-   {/* 盲盒展示 */}
-   <section className="grid grid-cols-dynamic gap-4 w-full ">
-    {currentBoxes.map((box) => (
-      <div key={box._id} className="card bg-gray-800 shadow-lg rounded-lg overflow-hidden"> {/* 卡片背景色调整 */}
-        <img
-          alt={box.title}
-          className="w-full h-48 object-cover"
-          src={selectImageByType(box.type)}
-          style={{
-            aspectRatio: "200/200",
-            objectFit: "cover",
-          }}
-        />
-        <div className="p-4 text-white"> {/* 修改这里的文本颜色为亮色 */}
-          <h2 className="text-2xl font-bold">{box.title}</h2> {/* 保持原样 */}
-          <p>type: {box.type}</p>
-          <p className="font-bold">price: ${box.price}</p>
-        </div>
-      </div>
-    ))}
-  </section>
-   {/* 分页按钮 */}
-   <div className="w-full max-w-2xl flex justify-center items-center gap-2 mt-4">
-   <button className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150" onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-     Previous
-   </button>
-   {/* 分页按钮遵循同样的颜色方案 */}
-   {[...Array(Math.ceil(filteredBlindBoxes.length / boxesPerPage)).keys()].map(number => (
-     <button key={number + 1} onClick={() => paginate(number + 1)} className={`px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150 ${currentPage === number + 1 ? "bg-gray-700" : ""}`}>
-       {number + 1}
-     </button>
-   ))}
-   <button className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150" onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(filteredBlindBoxes.length / boxesPerPage)}>
-     Next
-   </button>
- </div>
+            {/* 考虑在这里添加搜索输入框 */}
+          </div>
+      {/* 盲盒展示 */}
+      <section className="grid grid-cols-dynamic gap-4 w-full ">
+        {currentBoxes.map((box) => (
+          <div key={box._id} className="card bg-gray-800 shadow-lg rounded-lg overflow-hidden"> {/* 卡片背景色调整 */}
+            <img
+              alt={box.title}
+              className="w-full h-48 object-cover"
+              src={selectImageByType(box.type)}
+              style={{
+                aspectRatio: "200/200",
+                objectFit: "cover",
+              }}
+            />
+            <div className="p-4 text-white"> {/* 修改这里的文本颜色为亮色 */}
+              <h2 className="text-2xl font-bold">{box.title}</h2> {/* 保持原样 */}
+              <p>type: {box.type}</p>
+              <p className="font-bold">price: ${box.price}</p>
+            </div>
+          </div>
+        ))}
+      </section>
+      {/* 分页按钮 */}
+      <div className="w-full max-w-2xl flex justify-center items-center gap-2 mt-4">
+      <button className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150" onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+        Previous
+      </button>
+      {/* 分页按钮遵循同样的颜色方案 */}
+      {[...Array(Math.ceil(filteredBlindBoxes.length / boxesPerPage)).keys()].map(number => (
+        <button key={number + 1} onClick={() => paginate(number + 1)} className={`px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150 ${currentPage === number + 1 ? "bg-gray-700" : ""}`}>
+          {number + 1}
+        </button>
+      ))}
+      <button className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition duration-150" onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(filteredBlindBoxes.length / boxesPerPage)}>
+        Next
+      </button>
+    </div>
+    <div style={{ height: '120px' }}></div>
   </main>
  );
 };

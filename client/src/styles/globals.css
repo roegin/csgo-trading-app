@@ -28,6 +28,9 @@
     --card-text-color: 60 100% 50%; /* 设置文字颜色为黄色 */
   
     --radius: 0.5rem;           /* 边角半径，保持一致性 */
+
+    --card: 0 0% 15%; /* 深色背景 */
+    --card-foreground: 222.2 47.4% 11.2%; /* 浅色文本 */
   }
 
 
@@ -107,4 +110,10 @@
 .card-title,
 .card-description {
  color: hsl(var(--card-text-color)); /* 使用变量 */
+}
+
+/* Footer.tsx 相关的 CSS */
+.footer-container {
+  background-color: hsl(224, 71%, 5%); /* 设定为接近整体背景的暗色 */
+  /* 其他样式 */
 }

@@ -9,6 +9,7 @@ import { SERVER_URL } from '../config'; // 请根据实际路径调整 //SERVER_
 import Banner from './Banner';
 import { Button } from "@/components/ui/button"; // 确保路径正确
 import { BlindBoxDisplay } from '@/components/blindBox/BlindBoxDisplay';
+import Footer from '@/components/footer/Footer';
 
 export default function Index() {
     const [data, setData] = useState([]);
@@ -127,6 +128,7 @@ export default function Index() {
                     </div>
                 }
             </div>
+            <Footer />
         </div>
     );
 }
