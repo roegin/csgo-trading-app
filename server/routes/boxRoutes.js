@@ -55,7 +55,7 @@ router.post('/batchAdd', async (req, res) => {
   try {
     const blindBoxes = req.body; // 预期是一个盲盒数组
     const result = await BlindBox.insertMany(blindBoxes);
-    res.status(201).json({ message: "批量添加盲盒成功", result });
+    res.status(201).json({ message: "批量添加盲盒成功", blindBoxes });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "服务器错误" });

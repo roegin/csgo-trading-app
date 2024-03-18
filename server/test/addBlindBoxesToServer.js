@@ -13,6 +13,8 @@ async function addBlindBoxesToServer() {
       blindBoxes.push(blindBoxData);
     }
   
+    console.log('待添加盲盒',blindBoxes)
+
     try {
       console.log('url', `${SERVER_URL}/api/boxes/batchAdd`);
       const response = await axios.post(`${SERVER_URL}/api/boxes/batchAdd`, blindBoxes);
