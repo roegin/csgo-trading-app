@@ -62,6 +62,18 @@ router.post('/batchAdd', async (req, res) => {
   }
 });
 
-
+// 新路由：获取所有盲盒数据
+router.get('/all', async (req, res) => {
+  try {
+    const blindBoxes = await BlindBox.find({}); // 假设使用 mongoose 并且 BlindBox 是你的模型
+    res.json(blindBoxes);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "获取盲盒数据时发生错误" });
+  }
+});
 
 module.exports = router;
+
+
+
